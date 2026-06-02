@@ -305,9 +305,9 @@ p#home-copyright{
 /* ================================================== */
 
 /* 単語帳 */
-div#quiz-container{
+form#quiz-container{
   display: grid;
-  grid-template-rows: 3rem 5rem 1fr 1fr 1fr;
+  grid-template-rows: 3rem 5rem 3rem 1fr 1fr;
   gap: 1rem;
 
   width: 100%;
@@ -317,7 +317,7 @@ div#quiz-container{
   padding: 0;
 }
 
-div#quiz-container>p#quiz-japanese{
+form#quiz-container>p#quiz-japanese, form#quiz-container>p#quiz-german{
   display: block;
 
   width: 100%;
@@ -336,8 +336,14 @@ div#quiz-container>p#quiz-japanese{
   text-decoration: none;
   letter-spacing: 0;
 }
+form#quiz-container>p#quiz-german[data-t_or_f="true"]{
+  color: var(--green1);
+}
+form#quiz-container>p#quiz-german[data-t_or_f="false"]{
+  color: var(--red1);
+}
 
-div#quiz-container>input#quiz-answer{
+form#quiz-container>input#quiz-answer{
   display: block;
 
   width: 100%;
