@@ -167,7 +167,7 @@ main>h2{
   line-height: 4rem;
   text-align: justify;
   text-decoration: none;
-  letter-spacing: 0;
+  letter-spacing: 0.1rem;
 }
 
 /* ================================================== */
@@ -203,10 +203,10 @@ div.home-section>h2{
   font-weight: 500;
   font-size: 2rem;
 
-  line-height: 2rem;
+  line-height: 2.5rem;
   text-align: justify;
   text-decoration: none;
-  letter-spacing: 0;
+  letter-spacing: 0.1rem;
 }
 div.home-section>h3{
   color: var(--text1);
@@ -217,7 +217,7 @@ div.home-section>h3{
   line-height: 1.5rem;
   text-align: justify;
   text-decoration: none;
-  letter-spacing: 0;
+  letter-spacing: 0.1rem;
 }
 div.home-section>p{
   margin: 1rem 0 0 0;
