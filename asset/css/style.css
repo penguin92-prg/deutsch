@@ -87,6 +87,17 @@ nav>ul>li>span{
 nav>ul>li[data-state="current"]>span{
   font-variation-settings: 'FILL' 1;
 }
+
+span.navSpan{
+  display: block;
+  
+  width: 100%;
+  height: calc(var(--navHeight) + 0.5rem * 2);
+
+  margin: 2rem 0 0 0;
+  padding: 0;
+}
+
 /* ================================================== */
 /* ================================================== */
 /* ================================================== */
@@ -97,7 +108,7 @@ div#main-container{
   display: block;
 
   width: 100dvw;
-  height: calc(100dvh - (var(--navHeight) + 0.5rem * 2));
+  height: 100dvh;
 
   margin: 0;
   padding: 0;
@@ -129,6 +140,8 @@ div#main-container>div#main-carousel>main{
 
   margin: 0;
   padding: 0 2rem;
+
+  overflow-y: scroll;
 }
 
 /* ================================================== */
@@ -220,6 +233,28 @@ div.home-section>p{
   text-align: justify;
   text-decoration: none;
   letter-spacing: 0;
+}
+
+/* ================================================== */
+
+div#home-title>h1{
+  display: block;
+
+  width: 100%;
+  height: fit-content;
+
+  margin: 0;
+  padding: 0;
+
+  color: var(--text1);
+  font-family: "Jost", "Noto Sans JP", sans-serif;
+  font-weight: 800;
+  font-size: 6rem;
+
+  line-height: 6rem;
+  text-align: justify;
+  text-decoration: none;
+  letter-spacing: -0.2rem;
 }
 
 /* ================================================== */
