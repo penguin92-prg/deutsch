@@ -3,52 +3,74 @@
   <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Die Deutsche</title>
+    <title>どいちゅ | HOME</title>
 
+    <!-- リセットCSS読み込み -->
     <link rel="stylesheet" href="./asset/css/reset.css">
+    
+    <!-- CSS読み込み -->
+    <link rel="stylesheet" href="./asset/css/variable.css">
+    <link rel="stylesheet" href="./asset/css/style.css">
 
+    <!-- GoogleFonts読み込み -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Jost:ital,wght@0,100..900;1,100..900&family=Noto+Sans+JP:wght@100..900&display=swap" rel="stylesheet">
 
-    <link rel="stylesheet" href="./asset/css/variable.css">
-    <link rel="stylesheet" href="./asset/css/style.css">
+    <!-- マテリアルアイコン (Google Icons) -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
   </head>
 
   <body>
-    
-    <header>
-      <p>ドイツ語練習用サイト</p>
-      <a href="./">
-        Die Deutsche
-      </a>
-    </header>
+    <!-- 画面下部のナビゲーションバー -->
+    <nav>
+      <ul>
+        <li data-tab="home" data-state="current"><span class="material-symbols-outlined">home</span></li>
+        <li data-tab="quiz"><span class="material-symbols-outlined">cards_stack</span></li>
+        <li data-tab="user"><span class="material-symbols-outlined">person</span></li>
+        <li data-tab="request"><span class="material-symbols-outlined">mail</span></li>
+      </ul>
+    </nav>
 
-    <span></span>
+    <div id="main-container">
+      <div id="main-carousel">
+        <main id="tab-home">
+          <h2>ほーむ</h2>
 
-    <div id="description">
-      <p>
-        東京大学理科一類18組 ドイツ語練習用サイトです。<br>
-      </p>
-    </div>
+          <div id="home-description">
+            <h2>About</h2>
+            <h3>このサイトについて</h3>
+            <p>
+              
+              2026年度入学 東京大学理科一類18組のドイツ語試験対策委員会の有志が制作した、ドイツ語の単語帳アプリケーションです。
+            </p>
+          </div>
 
-    <main>
-      <a href="./alphabet">
-        <h2>Alphabet</h2>
-        <h3>アルファベート</h3>
-        <p>ドイツ語のアルファベット「アルファベート」を練習できます。種類・発音を覚えよう。</p>
-      </a>
-    </main>
+          <div id="home-reference">
+            <h2>Reference</h2>
+            <h3>参考資料･サイト</h3>
+            <ul>
+              <li><a href="https://deutsch.c.u-tokyo.ac.jp/v20/" target="_blank" rel="noopener noreferrer">東京大学教養学部 ドイツ語部会</a></li>
+            </ul>
+          </div>
 
-    <footer>
-      <div>
-        <p>参考サイト</p>
-        <ul>
-          <li><a href="https://deutsch.c.u-tokyo.ac.jp/v20/">東京大学教養学部 ドイツ語部会</a></li>
-        </ul>
+          <p id="home-copyright">&copy;2026 penguin92-prg.</p>
+        </main>
+  
+        <main id="tab-quiz">
+          <h2>たんごかーど</h2>
+        </main>
+  
+        <main id="tab-user">
+          <h2>ゆーざーじょーほー</h2>
+        </main>
+  
+        <main id="tab-request">
+          <h2>りくえすと</h2>
+        </main>
       </div>
-
-      <p>&copy;&nbsp;2026 penguin92-prg</p>
-    </footer>
+    </div>
+    
+    <script src="./asset/js/script.js"></script>
   </body>
 </html>

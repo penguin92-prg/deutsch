@@ -1,9 +1,22 @@
 @charset "utf-8";
 
 :root{
-  --base1: #f4f4f8;
-  --base2: #e4e4e8;
-  --base3: #d4d4d8;
+  --base1: #ffffff;
+  --base2: #f4f4f8;
+  --base3: #e4e4e8;
+  --base4: #d4d4d8;
 
-  --text1: #22222f;
+  --red1: #E64F40;
+
+  --green1: #609159;
+  --green2: #CAE640;
+
+  --text1: #222222;
+  --text2: #555555;
+  --text3: #888888;
+}
+
+:root{
+  --navHeight: 5rem;
+  --navItemNum: 4;
 }
