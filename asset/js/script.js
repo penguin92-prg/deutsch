@@ -27,6 +27,7 @@ window.addEventListener("load", function(){
 
   document.getElementById("quiz-container").addEventListener("submit", e => {
     e.preventDefault();
+    document.getElementById("quiz-answer").blur();
     checkAnswer(word);
   });
 });
