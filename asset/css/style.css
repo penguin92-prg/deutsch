@@ -237,20 +237,6 @@ div#home-description>p{
 
 /* ================================================== */
 
-div#home-usage{
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: flex-start;
-  gap: 0;
-
-  width: 100%;
-  height: fit-content;
-
-  margin: 2rem 0;
-  padding: 0;
-}
-
 div#home-usage>h2, div#home-usage>h3, div#home-usage>p{
   display: block;
 
