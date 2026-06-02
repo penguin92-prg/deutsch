@@ -81,10 +81,12 @@ nav>ul>li[data-state="current"]{
 }
 
 nav>ul>li>span{
-  font-variation-settings: 'wght' 300;
+  font-variation-settings: 'wght' 300, 'FILL' 0;
   font-size: 3rem;
 }
-
+nav>ul>li[data-state="current"]>span{
+  font-variation-settings: 'FILL' 1;
+}
 /* ================================================== */
 /* ================================================== */
 /* ================================================== */
