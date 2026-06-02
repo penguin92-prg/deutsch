@@ -280,10 +280,6 @@ div#home-usage>p{
   text-decoration: none;
   letter-spacing: 0;
 }
-div#home-usage>p>span{
-  font-variation-settings: 'wght' 300;
-  font-size: 1.5rem;
-}
 
 /* ================================================== */
 
