@@ -175,7 +175,7 @@ main>h2{
 /* ================================================== */
 
 /* ホーム */
-div#home-description{
+div.home-section{
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -188,6 +188,8 @@ div#home-description{
   margin: 2rem 0;
   padding: 0;
 }
+
+/* ================================================== */
 
 div#home-description>h2, div#home-description>h3, div#home-description>p{
   display: block;
@@ -235,7 +237,7 @@ div#home-description>p{
 
 /* ================================================== */
 
-div#home-reference{
+div#home-usage{
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -248,6 +250,56 @@ div#home-reference{
   margin: 2rem 0;
   padding: 0;
 }
+
+div#home-usage>h2, div#home-usage>h3, div#home-usage>p{
+  display: block;
+
+  width: 100%;
+  height: fit-content;
+
+  margin: 0;
+  padding: 0;
+} 
+div#home-usage>h2{
+  color: var(--text1);
+  font-family: "Jost", "Noto Sans JP", sans-serif;
+  font-weight: 500;
+  font-size: 2rem;
+
+  line-height: 2rem;
+  text-align: justify;
+  text-decoration: none;
+  letter-spacing: 0;
+}
+div#home-usage>h3{
+  color: var(--text1);
+  font-family: "Jost", "Noto Sans JP", sans-serif;
+  font-weight: 500;
+  font-size: 1rem;
+
+  line-height: 1.5rem;
+  text-align: justify;
+  text-decoration: none;
+  letter-spacing: 0;
+}
+div#home-usage>p{
+  margin: 1rem 0 0 0;
+  color: var(--text1);
+  font-family: "Jost", "Noto Sans JP", sans-serif;
+  font-weight: 400;
+  font-size: 1.3rem;
+
+  line-height: 1.8rem;
+  text-align: justify;
+  text-decoration: none;
+  letter-spacing: 0;
+}
+div#home-usage>p>span{
+  font-variation-settings: 'wght' 300;
+  font-size: 1.5rem;
+}
+
+/* ================================================== */
 
 div#home-reference>h2, div#home-reference>h3{
   display: block;
