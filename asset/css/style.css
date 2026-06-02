@@ -120,18 +120,6 @@ div#main-container>div#main-carousel{
 
   transition: all .15s;
 }
-div#main-container>div#main-carousel[data-tab="home"]{
-  left: 0;
-}
-div#main-container>div#main-carousel[data-tab="quiz"]{
-  left: -100dvw;
-}
-div#main-container>div#main-carousel[data-tab="user"]{
-  left: -200dvw;
-}
-div#main-container>div#main-carousel[data-tab="request"]{
-  left: -300dvw;
-}
 
 div#main-container>div#main-carousel>main{
   display: block;

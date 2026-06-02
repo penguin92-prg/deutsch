@@ -19,6 +19,7 @@ window.addEventListener("load", function(){
       });
       this.dataset.state = "current";
       document.getElementById("main-carousel").dataset.tab = this.dataset.tab;
+      document.getElementById("main-carousel").style.left = `-${Array.from(this.parentElement.children).indexOf(this) * 100}dvw`
     });
     if(li.dataset.state == "current"){
       li.click();
