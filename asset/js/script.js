@@ -139,6 +139,8 @@ function newQuiz(w){
 function checkAnswer(w){
   const answer = document.getElementById("quiz-answer").value;
   const german = w.german;
+  const gender = w.gender;
+  const note = w.note;
 
   document.getElementById("quiz-german").textContent = german;
   if(answer == german){
@@ -147,4 +149,23 @@ function checkAnswer(w){
   else{
     document.getElementById("quiz-german").dataset.t_or_f = "false";
   }
+
+  document.getElementById("quiz-gender").querySelectorAll("p")[0].dataset.gender = gender;
+  switch(gender){
+    case "der":
+      document.getElementById("quiz-gender").querySelectorAll("p")[0].textContent = "男";
+      break;
+    case "das":
+      document.getElementById("quiz-gender").querySelectorAll("p")[0].textContent = "中";
+      break;
+    case "die":
+      document.getElementById("quiz-gender").querySelectorAll("p")[0].textContent = "女";
+      break;
+    default:
+      document.getElementById("quiz-gender").querySelectorAll("p")[0].textContent = "複";
+      break;      
+  }
+  document.getElementById("quiz-gender").querySelectorAll("p")[1].textContent = gender + " " + german;
+  
+  document.getElementById("quiz-note").textContent = note;
 }

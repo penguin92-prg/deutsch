@@ -329,9 +329,9 @@ form#quiz-container>p#quiz-japanese, form#quiz-container>p#quiz-german{
   color: var(--text1);
   font-family: "Jost", "Noto Sans JP", sans-serif;
   font-weight: 600;
-  font-size: 1.75rem;
+  font-size: 3rem;
 
-  line-height: 3rem;
+  line-height: 6rem;
   text-align: center;
   text-decoration: none;
   letter-spacing: 0;
@@ -352,17 +352,103 @@ form#quiz-container>input#quiz-answer{
   margin: 0;
   padding: 0;
 
+  outline: 2px solid var(--text3);
   border: none;
   border-radius: 100rem;
 
-  box-shadow: var(--shadowInset);
+  color: var(--text1);
+  font-family: "Jost", "Noto Sans JP", sans-serif;
+  font-weight: 400;
+  font-size: 2.5rem;
+
+  line-height: 5rem;
+  text-align: center;
+  text-decoration: none;
+  letter-spacing: 0;
+}
+
+form#quiz-container>span#quiz-gender{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+
+  width: 100%;
+  height: fit-content;
+
+  margin: 0;
+  padding: 0;
+}
+form#quiz-container>span#quiz-gender>p:nth-of-type(1){
+  display: block;
+
+  height: 3rem;
+  aspect-ratio: 1 / 1;
+
+  margin: 0;
+  padding: 0;
+
+  border: none;
+  border-radius: 50%;
+
+  color: var(--text1);
+  font-family: "Jost", "Noto Sans JP", sans-serif;
+  font-weight: 600;
+  font-size: 1.6rem;
+
+  line-height: 3rem;
+  text-align: center;
+  text-decoration: none;
+  letter-spacing: 0;
+}
+form#quiz-container>span#quiz-gender>p:nth-of-type(1)[data-gender="der"]{
+  background-color: var(--blue1);
+}
+form#quiz-container>span#quiz-gender>p:nth-of-type(1)[data-gender="das"]{
+  background-color: var(--green2);
+}
+form#quiz-container>span#quiz-gender>p:nth-of-type(1)[data-gender="die"]{
+  background-color: var(--red1);
+}
+form#quiz-container>span#quiz-gender>p:nth-of-type(1)[data-gender="pl"]{
+  background-color: var(--orange1);
+}
+form#quiz-container>span#quiz-gender>p:nth-of-type(2){
+  display: block;
+
+  width: fit-content;
+  height: fit-content;
+
+  margin: 0;
+  padding: 0;
 
   color: var(--text1);
   font-family: "Jost", "Noto Sans JP", sans-serif;
   font-weight: 400;
   font-size: 2rem;
 
-  line-height: 5rem;
+  line-height: 3rem;
+  text-align: center;
+  text-decoration: none;
+  letter-spacing: 0;
+}
+
+form#quiz-container>p#quiz-note{
+  display: block;
+
+  width: 100%;
+  height: fit-content;
+
+  margin: 0;
+  padding: 0;
+
+  color: var(--text1);
+  font-family: "Jost", "Noto Sans JP", sans-serif;
+  font-weight: 400;
+  font-size: 1.6rem;
+
+  line-height: 2rem;
   text-align: center;
   text-decoration: none;
   letter-spacing: 0;
