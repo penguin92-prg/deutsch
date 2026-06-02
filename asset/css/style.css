@@ -297,3 +297,65 @@ p#home-copyright{
   text-decoration: none;
   letter-spacing: 0;
 }
+
+/* ================================================== */
+/* ================================================== */
+/* ================================================== */
+
+/* 単語帳 */
+div#quiz-container{
+  display: grid;
+  grid-template-rows: 3rem 5rem 1fr 1fr 1fr;
+  gap: 1rem;
+
+  width: 100%;
+  height: fit-content;
+
+  margin: 2rem 0;
+  padding: 0;
+}
+
+div#quiz-container>p#quiz-japanese{
+  display: block;
+
+  width: 100%;
+  height: fit-content;
+
+  margin: 0;
+  padding: 0;
+
+  color: var(--text1);
+  font-family: "Jost", "Noto Sans JP", sans-serif;
+  font-weight: 600;
+  font-size: 1.75rem;
+
+  line-height: 3rem;
+  text-align: center;
+  text-decoration: none;
+  letter-spacing: 0;
+}
+
+div#quiz-container>input#quiz-answer{
+  display: block;
+
+  width: 100%;
+  height: fit-content;
+
+  margin: 0;
+  padding: 0;
+
+  border: none;
+  border-radius: 100rem;
+
+  box-shadow: var(--shadowInset);
+
+  color: var(--text1);
+  font-family: "Jost", "Noto Sans JP", sans-serif;
+  font-weight: 400;
+  font-size: 2rem;
+
+  line-height: 5rem;
+  text-align: center;
+  text-decoration: none;
+  letter-spacing: 0;
+}
