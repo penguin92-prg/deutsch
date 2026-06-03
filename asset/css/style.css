@@ -688,6 +688,8 @@ form#request-form>select{
 
   border: none;
   border-radius: 1rem;
+
+  background-color: var(--base1);
   
   color: var(--text1);
   font-family: "Jost", "Noto Sans JP", sans-serif;
