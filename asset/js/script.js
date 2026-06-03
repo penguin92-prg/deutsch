@@ -145,6 +145,8 @@ function newQuiz(w){
   document.getElementById("quiz-gender").querySelectorAll("p").forEach(e => e.textContent = "");
   document.getElementById("quiz-note").textContent = "";
 
+  document.getElementById("quiz-next").setAttribute("disabled", "");
+
   document.getElementById("quiz-japanese").textContent = w.japanese;
 
   document.getElementById("quiz-answer").focus();
@@ -183,4 +185,8 @@ function checkAnswer(w){
   document.getElementById("quiz-gender").querySelectorAll("p")[1].textContent = gender + " " + german;
   
   document.getElementById("quiz-note").textContent = note;
+
+  
+
+  document.getElementById("quiz-next").removeAttribute("disabled");
 }
