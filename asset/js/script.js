@@ -18,17 +18,40 @@ window.addEventListener("load", function(){
         e.dataset.state = "";
       });
       this.dataset.state = "current";
-      document.getElementById("main-carousel").style.left = `-${Array.from(this.parentElement.children).indexOf(this) * 100}dvw`
+
+      // タブ移動
+      document.getElementById("main-carousel").style.left = `${Array.from(this.parentElement.children).indexOf(this) * (-100)}dvw`
+      
+      // 単語帳タブを開いたときに問題を読み込み
+      if(this.dataset.tab == "quiz" && !document.getElementById("quiz-japanese").textContent){
+        newQuiz(word);
+      }
     });
+
+    // デバッグ用
     if(li.dataset.state == "current"){
       li.click();
     }
   });
 
+  // 単語入力の挙動を設定（→ボタンが押されたら自動でキーボードを非表示化）
   document.getElementById("quiz-container").addEventListener("submit", e => {
     e.preventDefault();
     document.getElementById("quiz-answer").blur();
     checkAnswer(word);
+  });
+
+  document.getElementById("request-form").addEventListener("submit", function(){
+    console.log("submitted");
+    document.getElementById("request-form-thanks").classList.add("active");
+    document.getElementById("request-form-thanks-bcg").classList.add("active");
+    window.setTimeout(
+      function(){
+        document.getElementById("request-form-thanks").classList.remove("active");
+        document.getElementById("request-form-thanks-bcg").classList.remove("active");
+      },
+      2000
+    );
   });
 });
 
@@ -44,6 +67,8 @@ const SUPABASE_URL = "https://lrytnwoeldjavdjoidui.supabase.co";
 const SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImxyeXRud29lbGRqYXZkam9pZHVpIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODAzOTg3NjMsImV4cCI6MjA5NTk3NDc2M30.rydduNQJkYjG1hxUUA2exGPulDXNGndh_Y-YoQsAiGU";
 
 let ALL_WORDS = [];
+let shuffledWords;
+let currentIndex = 0;
 
 async function loadWords() {
   try {
@@ -69,6 +94,7 @@ async function loadWords() {
 
     console.log(`取得件数: ${ALL_WORDS.length}`);
 
+    shuffledWords = shuffle(ALL_WORDS);
   } catch (error) {
     console.error("単語データの取得に失敗:", error);
   }
@@ -89,7 +115,6 @@ window.addEventListener("load", async () => {
   console.log(ALL_WORDS);
 
   word = getNextWord();
-  newQuiz(word);
 
   document.getElementById("quiz-next").addEventListener("click", function(){
     console.log("clicked");
@@ -118,8 +143,6 @@ function shuffle(array) {
   return arr;
 }
 
-let shuffledWords = shuffle(ALL_WORDS);
-let currentIndex = 0;
 
 function getNextWord() {
   if (currentIndex >= shuffledWords.length) {
@@ -149,7 +172,7 @@ function newQuiz(w){
 
   document.getElementById("quiz-japanese").textContent = w.japanese;
 
-  document.getElementById("quiz-answer").focus();
+  document.getElementById("quiz-answer").focus({preventScroll: true});
 }
 
 function checkAnswer(w){
@@ -159,6 +182,8 @@ function checkAnswer(w){
   const gender = w.gender;
   const note = w.note;
 
+  const genderPs = document.getElementById("quiz-gender").querySelectorAll("p");
+
   document.getElementById("quiz-german").textContent = german;
   if(answer == german){
     document.getElementById("quiz-german").dataset.t_or_f = "true";
@@ -167,26 +192,25 @@ function checkAnswer(w){
     document.getElementById("quiz-german").dataset.t_or_f = "false";
   }
 
-  document.getElementById("quiz-gender").querySelectorAll("p")[0].dataset.gender = gender;
+  genderPs[0].dataset.gender = gender;
   switch(gender){
     case "der":
-      document.getElementById("quiz-gender").querySelectorAll("p")[0].textContent = "男";
+      genderPs[0].textContent = "男";
       break;
     case "das":
-      document.getElementById("quiz-gender").querySelectorAll("p")[0].textContent = "中";
+      genderPs[0].textContent = "中";
       break;
     case "die":
-      document.getElementById("quiz-gender").querySelectorAll("p")[0].textContent = "女";
+      genderPs[0].textContent = "女";
       break;
     default:
-      document.getElementById("quiz-gender").querySelectorAll("p")[0].textContent = "複";
+      genderPs[0].textContent = "複";
       break;      
   }
-  document.getElementById("quiz-gender").querySelectorAll("p")[1].textContent = gender + " " + german;
+  genderPs[1].textContent = gender + " " + german;
   
   document.getElementById("quiz-note").textContent = note;
 
-  
-
   document.getElementById("quiz-next").removeAttribute("disabled");
+  document.getElementById("quiz-next").focus();
 }

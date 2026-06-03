@@ -27,7 +27,6 @@
       <ul>
         <li data-tab="home" data-state="current"><span class="material-symbols-outlined">home</span></li>
         <li data-tab="quiz"><span class="material-symbols-outlined">cards_stack</span></li>
-        <!-- <li data-tab="user"><span class="material-symbols-outlined">person</span></li> -->
         <li data-tab="request"><span class="material-symbols-outlined">mail</span></li>
       </ul>
     </nav>
@@ -75,7 +74,6 @@
         </main>
   
         <main id="tab-quiz">
-
           <form id="quiz-container">
             <p id="quiz-japanese"></p>
             <input type="text" id="quiz-answer" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" inputmode="latin" enterkeyhint="go">
@@ -97,9 +95,59 @@
         </main>
   
         <main id="tab-request">
+          <div id="request-description" class="request-section">
+            <h2>Request</h2>
+            <h3>要望を送る</h3>
+            <p>
+              このサイトについての要望を送ることができます。<br>
+            </p>
+
+            <ul>
+              <li>単語のスペルミス</li>
+              <li>不適当な日本語訳</li>
+              <li>誤った情報</li>
+            </ul>
+            
+            <p>
+              などがあれば、こちらから連絡いただければASAPで修正します。
+            </p>
+          </div>
+          
+          <div class="request-section">
+            <h2>Form</h2>
+            <h3>要望送信フォーム</h3>
+            <p>以下の項目を埋めて送信してください。</p>
+
+            <form id="request-form" action="https://docs.google.com/forms/u/0/d/e/1FAIpQLSfo60Eb4zUhpzXT8mtc6HmdoKKAQ1gNQ5-B7zg7fIRmuwRzHg/formResponse" method="POST" target="hidden_iframe">
+              <label for="request-form-category">カテゴリを選択してください</label>
+              <select name="entry.251393415" id="request-form-category" required>
+                <option value="情報のミス（スペル/和訳/情報など）">情報のミス（スペル/和訳/情報など）</option>
+                <option value="単語追加の要望">単語追加の要望</option>
+                <option value="サイト形式についての要望">サイト形式についての要望</option>
+                <option value="その他">その他</option>
+              </select>
+
+              <label for="request-form-content">内容を入力してください</label>
+              <textarea name="entry.318452551" id="request-form-content" placeholder="例: テストが難しすぎて解けません。どうにかなりませんか。" required></textarea>
+
+              <button type="submit">送信</button>
+            </form>
+
+            <iframe name="hidden_iframe" style="display:none;"></iframe>
+          </div>
+
+          <span class="navSpan"></span>
         </main>
       </div>
     </div>
+
+    <div id="request-form-thanks">
+      <p>
+        要望を送信いただきありがとうございます。<br>
+        可能な範囲ですぐに対応させていただきます。
+      </p>
+    </div>
+    <span id="request-form-thanks-bcg"></span>
     
     <script src="./asset/js/script.js"></script>
   </body>
