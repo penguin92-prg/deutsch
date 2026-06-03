@@ -144,8 +144,10 @@ function newQuiz(w){
   document.getElementById("quiz-gender").querySelectorAll("p")[0].dataset.gender = "";
   document.getElementById("quiz-gender").querySelectorAll("p").forEach(e => e.textContent = "");
   document.getElementById("quiz-note").textContent = "";
-  
+
   document.getElementById("quiz-japanese").textContent = w.japanese;
+
+  document.getElementById("quiz-answer").focus();
 }
 
 function checkAnswer(w){
