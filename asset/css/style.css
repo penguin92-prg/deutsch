@@ -94,7 +94,7 @@ span.navSpan{
   width: 100%;
   height: calc(var(--navHeight) + 0.5rem * 2);
 
-  margin: 2rem 0 0 0;
+  margin: 4rem 0 0 0;
   padding: 0;
 }
 
@@ -136,41 +136,12 @@ div#main-container>div#main-carousel>main{
   display: block;
 
   width: calc(100dvw - 2rem * 2);
-  height: 100%;
+  height: calc(100% - 2rem);
 
   margin: 0;
-  padding: 0 2rem;
+  padding: 2rem 2rem 0 2rem;
 
   overflow-y: scroll;
-}
-
-/* ================================================== */
-/* ================================================== */
-/* ================================================== */
-
-main>h2{
-  display: block;
-
-  width: fit-content;
-  height: fit-content;
-
-  margin: 2rem 0 0 0;
-  padding: 0 2rem;
-
-  border: none;
-  border-radius: 100rem;
-
-  background-color: var(--text2);
-
-  color: var(--base1);
-  font-family: "Jost", "Noto Sans JP", sans-serif;
-  font-weight: 400;
-  font-size: 2rem;
-
-  line-height: 4rem;
-  text-align: justify;
-  text-decoration: none;
-  letter-spacing: 0.1rem;
 }
 
 /* ================================================== */
@@ -237,6 +208,10 @@ div.home-section>p{
 
 /* ================================================== */
 
+div#home-title{
+  margin: 8rem 0;
+}
+
 div#home-title>h1{
   display: block;
 
@@ -255,6 +230,31 @@ div#home-title>h1{
   text-align: justify;
   text-decoration: none;
   letter-spacing: -0.2rem;
+}
+
+div#home-title>p{
+  display: block;
+
+  width: fit-content;
+  height: fit-content;
+
+  margin: 2rem 0 0 0;
+  padding: 1rem;
+
+  border: none;
+  border-radius: 1rem;
+
+  background-color: var(--text2);
+
+  color: var(--base1);
+  font-family: "Jost", "Noto Sans JP", sans-serif;
+  font-weight: 400;
+  font-size: 1.3rem;
+
+  line-height: 1.8rem;
+  text-align: justify;
+  text-decoration: none;
+  letter-spacing: 0;
 }
 
 /* ================================================== */
@@ -309,7 +309,7 @@ p#home-copyright{
   width: fit-content;
   height: fit-content;
 
-  margin: 0 0 0;
+  margin: 0;
   padding: 0;
 
   color: var(--text2);
@@ -317,7 +317,7 @@ p#home-copyright{
   font-weight: 400;
   font-size: 1rem;
 
-  line-height: 2rem;
+  line-height: 1.5rem;
   text-align: justify;
   text-decoration: none;
   letter-spacing: 0;
@@ -328,6 +328,20 @@ p#home-copyright{
 /* ================================================== */
 
 /* 単語帳 */
+div#main-container>div#main-carousel>main#tab-quiz{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 0;
+
+  width: calc(100% - 2rem * 2);
+  height: calc(100dvh - (var(--navHeight) + 0.5rem * 2));
+
+  margin: 0;
+  padding: 2rem 2rem 0 2rem;
+}
+
 form#quiz-container{
   display: flex;
   flex-direction: column;
@@ -475,4 +489,39 @@ form#quiz-container>p#quiz-note{
   text-align: center;
   text-decoration: none;
   letter-spacing: 0;
+}
+
+button#quiz-next{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
+
+  width: fit-content;
+  height: fit-content;
+
+  margin: 0;
+  padding: 1rem 2rem;
+
+  border: none;
+  border-radius: 1rem;
+
+  background-color: var(--base2);
+
+  box-shadow: var(--shadowRaised);
+
+  color: var(--text1);
+  font-family: "Jost", "Noto Sans JP", sans-serif;
+  font-weight: 400;
+  font-size: 2rem;
+
+  line-height: 3rem;
+  text-align: center;
+  text-decoration: none;
+  letter-spacing: 0;
+}
+button#quiz-next>span{
+  font-variation-settings: 'wght' 400;
+  font-size: 2rem;
 }

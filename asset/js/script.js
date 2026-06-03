@@ -89,8 +89,14 @@ window.addEventListener("load", async () => {
   console.log(ALL_WORDS);
 
   word = getNextWord();
-
   newQuiz(word);
+
+  document.getElementById("quiz-next").addEventListener("click", function(){
+    console.log("clicked");
+
+    word = getNextWord();
+    newQuiz(word);
+  });
 });
 
 
@@ -133,12 +139,19 @@ function getNextWord() {
 
 
 function newQuiz(w){
+  document.getElementById("quiz-answer").value = "";
+  document.getElementById("quiz-german").textContent = "";
+  document.getElementById("quiz-gender").querySelectorAll("p")[0].dataset.gender = "";
+  document.getElementById("quiz-gender").querySelectorAll("p").forEach(e => e.textContent = "");
+  document.getElementById("quiz-note").textContent = "";
+  
   document.getElementById("quiz-japanese").textContent = w.japanese;
 }
 
 function checkAnswer(w){
   const answer = document.getElementById("quiz-answer").value;
-  const german = w.german;
+  const germanArray = w.german.slice(1, -1).split(", ").map(s => s.trim());
+  const german = germanArray[0] == "" ? germanArray[1] : germanArray[0];
   const gender = w.gender;
   const note = w.note;
 

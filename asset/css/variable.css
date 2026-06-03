@@ -6,7 +6,7 @@
   --base3: #e4e4e8;
   --base4: #d4d4d8;
 
-  --red1: #E64F40;
+  --red1: #f2847a;
 
   --orange1: #dd9434;
 
@@ -27,5 +27,6 @@
 }
 
 :root{
+  --shadowRaised: 0.15rem 0.15rem 0.5rem var(--base3), -0.15rem -0.15rem 0.5rem var(--base1);
   --shadowInset: inset 0.1rem 0.1rem 0.25rem var(--base3), inset -0.1rem -0.1rem 0.25rem var(--base1);
 }
