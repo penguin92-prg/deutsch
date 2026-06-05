@@ -506,7 +506,7 @@ form#quiz-container>span#quiz-gender{
   margin: 0;
   padding: 0;
 }
-form#quiz-container[data-type="noun"]>span#quiz-gender{
+form#quiz-container[data-type="noun"]>span#quiz-gender, form#quiz-container[data-type="mixed"]>span#quiz-gender{
   display: flex;
 }
 form#quiz-container>span#quiz-gender>p:nth-of-type(1){
@@ -576,7 +576,7 @@ form#quiz-container>span#quiz-conjugation{
   margin: 0 0 2rem 0;
   padding: 0;
 }
-form#quiz-container[data-type="verb"]>span#quiz-conjugation{
+form#quiz-container[data-type="verb"]>span#quiz-conjugation, form#quiz-container[data-type="mixed"]>span#quiz-conjugation{
   display: flex;
 }
 form#quiz-container>span#quiz-conjugation>p:nth-of-type(1){
