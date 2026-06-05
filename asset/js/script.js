@@ -21,11 +21,6 @@ window.addEventListener("load", function(){
 
       // タブ移動
       document.getElementById("main-carousel").style.left = `${Array.from(this.parentElement.children).indexOf(this) * (-100)}dvw`
-      
-      // 単語帳タブを開いたときに問題を読み込み
-      if(this.dataset.tab == "quiz" && !document.getElementById("quiz-japanese").textContent){
-        newQuiz(word);
-      }
     });
 
     // デバッグ用
@@ -33,6 +28,23 @@ window.addEventListener("load", function(){
       li.click();
     }
   });
+
+  document.querySelectorAll("#quiz-select-category-container>div>button").forEach(btn => {
+    btn.addEventListener("click", function(){
+      if(confirm(`カテゴリを ${this.innerText} に設定しますか?`)){
+        document.getElementById("quiz-select-category-container").classList.remove("active");
+        document.getElementById("quiz-container").classList.add("active");
+        document.getElementById("quiz-next").classList.add("active");
+
+        setQuizType(this.dataset.value);
+
+        if(!document.getElementById("quiz-japanese").textContent){
+          word = getNextWord();
+          newQuiz(word);
+        }
+      }
+    });
+  })
 
   // 単語入力の挙動を設定（→ボタンが押されたら自動でキーボードを非表示化）
   document.getElementById("quiz-container").addEventListener("submit", e => {
@@ -55,6 +67,19 @@ window.addEventListener("load", function(){
   });
 });
 
+window.addEventListener("load", async () => {
+  await loadWords();
+  
+  console.log(ALL_WORDS);
+
+  word = getNextWord();
+
+  document.getElementById("quiz-next").addEventListener("click", function(){
+    word = getNextWord();
+    newQuiz(word);
+  });
+});
+
 
 
 
@@ -65,6 +90,15 @@ window.addEventListener("load", function(){
 
 const SUPABASE_URL = "https://lrytnwoeldjavdjoidui.supabase.co";
 const SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImxyeXRud29lbGRqYXZkam9pZHVpIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODAzOTg3NjMsImV4cCI6MjA5NTk3NDc2M30.rydduNQJkYjG1hxUUA2exGPulDXNGndh_Y-YoQsAiGU";
+
+let WORDS_BY_TYPE = {
+  noun: [],
+  verb: [],
+  other: [],
+  mixed: []
+};
+
+let currentType = "mixed";
 
 let ALL_WORDS = [];
 let shuffledWords;
@@ -92,6 +126,13 @@ async function loadWords() {
 
     ALL_WORDS = await response.json();
 
+    WORDS_BY_TYPE.noun = ALL_WORDS.filter(w => w.type === "noun");
+    WORDS_BY_TYPE.verb = ALL_WORDS.filter(w => w.type === "verb");
+    WORDS_BY_TYPE.other = ALL_WORDS.filter(w => w.type !== "noun" && w.type !== "verb");
+    WORDS_BY_TYPE.mixed = [...ALL_WORDS];
+
+    setQuizType("mixed")
+
     console.log(`取得件数: ${ALL_WORDS.length}`);
 
     shuffledWords = shuffle(ALL_WORDS);
@@ -100,39 +141,13 @@ async function loadWords() {
   }
 }
 
+function setQuizType(type){
+  currentType = type;
+  shuffledWords = shuffle(WORDS_BY_TYPE[type]);
+  currentIndex = 0;
 
-
-
-
-
-
-
-
-
-window.addEventListener("load", async () => {
-  await loadWords();
-  
-  console.log(ALL_WORDS);
-
-  word = getNextWord();
-
-  document.getElementById("quiz-next").addEventListener("click", function(){
-    console.log("clicked");
-
-    word = getNextWord();
-    newQuiz(word);
-  });
-});
-
-
-
-
-
-
-
-
-
-
+  document.getElementById("quiz-container").dataset.type = type;
+}
 
 function shuffle(array) {
   const arr = [...array];
@@ -143,29 +158,21 @@ function shuffle(array) {
   return arr;
 }
 
-
 function getNextWord() {
   if (currentIndex >= shuffledWords.length) {
-    shuffledWords = shuffle(ALL_WORDS);
+    shuffledWords = shuffle(WORDS_BY_TYPE[currentType]);
     currentIndex = 0;
   }
 
   return shuffledWords[currentIndex++];
 }
 
-
-
-
-
-
-
-
-
 function newQuiz(w){
   document.getElementById("quiz-answer").value = "";
   document.getElementById("quiz-german").textContent = "";
   document.getElementById("quiz-gender").querySelectorAll("p")[0].dataset.gender = "";
   document.getElementById("quiz-gender").querySelectorAll("p").forEach(e => e.textContent = "");
+  document.getElementById("quiz-conjugation").querySelectorAll("p")[1].textContent = "";
   document.getElementById("quiz-note").textContent = "";
 
   document.getElementById("quiz-next").setAttribute("disabled", "");
@@ -180,6 +187,11 @@ function checkAnswer(w){
   const germanArray = w.german.slice(1, -1).split(", ").map(s => s.trim());
   const german = germanArray[0] == "" ? germanArray[1] : germanArray[0];
   const gender = w.gender;
+  let conjugation = "";
+  for(let i=1; i<germanArray.length; i++){
+    conjugation += (germanArray[i] + "-");
+  }
+  conjugation = conjugation.slice(0, -1);
   const note = w.note;
 
   const genderPs = document.getElementById("quiz-gender").querySelectorAll("p");
@@ -209,6 +221,8 @@ function checkAnswer(w){
   }
   genderPs[1].textContent = gender + " " + german;
   
+  document.getElementById("quiz-conjugation").querySelectorAll("p")[1].textContent = conjugation;
+
   document.getElementById("quiz-note").textContent = note;
 
   document.getElementById("quiz-next").removeAttribute("disabled");
