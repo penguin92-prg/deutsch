@@ -187,6 +187,7 @@ function checkAnswer(w){
   const germanArray = w.german.slice(1, -1).split(", ").map(s => s.trim());
   const german = germanArray[0] == "" ? germanArray[1] : germanArray[0];
   const gender = w.gender;
+  
   let conjugation = "";
   for(let i=1; i<germanArray.length; i++){
     conjugation += (germanArray[i] + "-");
@@ -196,30 +197,34 @@ function checkAnswer(w){
 
   const genderPs = document.getElementById("quiz-gender").querySelectorAll("p");
 
-  document.getElementById("quiz-german").textContent = german;
-  if(answer == german){
+  document.getElementById("quiz-german").textContent = gender + " " + german;
+  if(answer == (gender + " " + german)){
     document.getElementById("quiz-german").dataset.t_or_f = "true";
   }
   else{
     document.getElementById("quiz-german").dataset.t_or_f = "false";
   }
 
-  genderPs[0].dataset.gender = gender;
   switch(gender){
     case "der":
-      genderPs[0].textContent = "男";
+      genderPs[0].dataset.gender = "m";
+      genderPs[0].textContent = "男性";
       break;
     case "das":
-      genderPs[0].textContent = "中";
+      genderPs[0].dataset.gender = "n";
+      genderPs[0].textContent = "中性";
       break;
     case "die":
-      genderPs[0].textContent = "女";
+      genderPs[0].dataset.gender = "f";
+      genderPs[0].textContent = "女性";
       break;
     default:
-      genderPs[0].textContent = "複";
+      genderPs[0].dataset.gender = "pl";
+      genderPs[0].textContent = "複数";
       break;      
   }
-  genderPs[1].textContent = gender + " " + german;
+  // genderPs[1].textContent = gender + " " + german;
+  // genderPs[1].textContent = "男性弱変化"
   
   document.getElementById("quiz-conjugation").querySelectorAll("p")[1].textContent = conjugation;
 

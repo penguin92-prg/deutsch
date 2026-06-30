@@ -1,0 +1,297 @@
+@charset "utf-8";
+
+div.request-section{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 0;
+
+  width: 100%;
+  height: fit-content;
+
+  margin: 2rem 0;
+  padding: 0;
+}
+div.request-section>h2, div.request-section>h3, div.request-section>p{
+  display: block;
+
+  width: 100%;
+  height: fit-content;
+
+  margin: 0;
+  padding: 0;
+}
+div.request-section>h2{
+  color: var(--text1);
+  font-family: "Jost", "Noto Sans JP", sans-serif;
+  font-weight: 500;
+  font-size: 2rem;
+
+  line-height: 2.5rem;
+  text-align: justify;
+  text-decoration: none;
+  letter-spacing: 0.1rem;
+}
+div.request-section>h3{
+  color: var(--text1);
+  font-family: "Jost", "Noto Sans JP", sans-serif;
+  font-weight: 500;
+  font-size: 1rem;
+
+  line-height: 1.5rem;
+  text-align: justify;
+  text-decoration: none;
+  letter-spacing: 0.1rem;
+}
+div.request-section>p{
+  margin: 1rem 0 0 0;
+  color: var(--text1);
+  font-family: "Jost", "Noto Sans JP", sans-serif;
+  font-weight: 400;
+  font-size: 1.3rem;
+
+  line-height: 1.8rem;
+  text-align: justify;
+  text-decoration: none;
+  letter-spacing: 0;
+}
+
+/* ================================================== */
+
+div#request-description>ul{
+  display: block;
+  
+  width: 100%;
+  height: fit-content;
+
+  margin: 1rem 0 0 0;
+  padding: 0;
+
+  list-style: disc;
+  list-style-position: inside;
+}
+div#request-description>ul>li{
+  display: list-item;
+
+  width: 100%;
+  height: fit-content;
+
+  margin: 0;
+  padding: 0;
+  
+  color: var(--text1);
+  font-family: "Jost", "Noto Sans JP", sans-serif;
+  font-weight: 400;
+  font-size: 1.3rem;
+
+  line-height: 1.8rem;
+  text-align: justify;
+  text-decoration: none;
+  letter-spacing: 0;
+}
+
+/* ================================================== */
+
+form#request-form{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 0rem;
+
+  width: calc(100% - 1rem * 2);
+  height: fit-content;
+
+  margin: 2rem 0 0 0;
+  padding: 1rem;
+
+  border: none;
+  border-radius: 1rem;
+
+  background-color: var(--base2);
+
+  box-shadow: var(--shadowRaised);
+}
+
+form#request-form>label{
+  display: block;
+
+  width: 100%;
+  height: fit-content;
+
+  margin: 0;
+  padding: 0;
+  
+  color: var(--text1);
+  font-family: "Jost", "Noto Sans JP", sans-serif;
+  font-weight: 400;
+  font-size: 1.3rem;
+
+  line-height: 1.8rem;
+  text-align: justify;
+  text-decoration: none;
+  letter-spacing: 0;
+}
+
+form#request-form>select{
+  display: block;
+
+  width: 100%;
+  height: 2.5rem;
+
+  margin: 1rem 0 3rem 0;
+  padding: 0 1rem;
+
+  border: none;
+  border-radius: 1rem;
+
+  background-color: var(--base1);
+  
+  color: var(--text1);
+  font-family: "Jost", "Noto Sans JP", sans-serif;
+  font-weight: 400;
+  font-size: 1.3rem;
+
+  line-height: 2.5rem;
+  text-align: justify;
+  text-decoration: none;
+  letter-spacing: 0;
+  
+  cursor: pointer;
+}
+
+form#request-form>textarea{
+  display: block;
+
+  width: calc(100% - 1rem * 2);
+  height: calc(2rem * 6);
+
+  margin: 1rem 0 3rem 0;
+  padding: 1rem;
+
+  border: none;
+  border-radius: 1rem;
+  
+  color: var(--text1);
+  font-family: "Jost", "Noto Sans JP", sans-serif;
+  font-weight: 400;
+  font-size: 1.6rem;
+
+  line-height: 2rem;
+  text-align: justify;
+  text-decoration: none;
+  letter-spacing: 0;
+}
+
+form#request-form>button{
+  display: block;
+
+  width: fit-content;
+  height: fit-content;
+
+  margin: 0;
+  padding: 0.5rem 2rem;
+
+  border: none;
+  border-radius: 100rem;
+  
+  background-color: var(--green1);
+
+  box-shadow: var(--shadowRaised);
+  
+  color: var(--base1);
+  font-family: "Jost", "Noto Sans JP", sans-serif;
+  font-weight: 600;
+  font-size: 1.3rem;
+
+  line-height: 2rem;
+  text-align: justify;
+  text-decoration: none;
+  letter-spacing: 0;
+  
+  cursor: pointer;
+}
+
+/* ================================================== */
+
+div#request-form-thanks{
+  position: absolute;
+  inset: 0;
+  z-index: 1000;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 0;
+
+  width: calc(80% - 1rem * 2);
+  height: fit-content;
+
+  margin: auto;
+  padding: 1rem;
+
+  border: none;
+  border-radius: 1rem;
+
+  background-color: var(--base1);
+
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+
+  transition: all .15s;
+}
+div#request-form-thanks.active{
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+}
+
+div#request-form-thanks>p{
+  display: block;
+
+  width: 100%;
+  height: fit-content;
+
+  margin: 0;
+  padding: 0;
+  
+  color: var(--text1);
+  font-family: "Jost", "Noto Sans JP", sans-serif;
+  font-weight: 400;
+  font-size: 1.3rem;
+
+  line-height: 2rem;
+  text-align: justify;
+  text-decoration: none;
+  letter-spacing: 0;
+}
+
+span#request-form-thanks-bcg{
+  position: absolute;
+  inset: 0;
+  z-index: 999;
+
+  display: block;
+
+  width: auto;
+  height: auto;
+
+  margin: auto;
+  padding: 0;
+
+  background-color: #00000033;
+
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+
+  transition: all .15s;
+}
+span#request-form-thanks-bcg.active{
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+}

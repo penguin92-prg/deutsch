@@ -1,0 +1,175 @@
+@charset "utf-8";
+
+div.home-section{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 0;
+
+  width: 100%;
+  height: fit-content;
+
+  margin: 2rem 0;
+  padding: 0;
+}
+div.home-section>h2, div.home-section>h3, div.home-section>p{
+  display: block;
+
+  width: 100%;
+  height: fit-content;
+
+  margin: 0;
+  padding: 0;
+}
+div.home-section>h2{
+  color: var(--text1);
+  font-family: "Jost", "Noto Sans JP", sans-serif;
+  font-weight: 500;
+  font-size: 2rem;
+
+  line-height: 2.5rem;
+  text-align: justify;
+  text-decoration: none;
+  letter-spacing: 0.1rem;
+}
+div.home-section>h3{
+  color: var(--text1);
+  font-family: "Jost", "Noto Sans JP", sans-serif;
+  font-weight: 500;
+  font-size: 1rem;
+
+  line-height: 1.5rem;
+  text-align: justify;
+  text-decoration: none;
+  letter-spacing: 0.1rem;
+}
+div.home-section>p{
+  margin: 1rem 0 0 0;
+  color: var(--text1);
+  font-family: "Jost", "Noto Sans JP", sans-serif;
+  font-weight: 400;
+  font-size: 1.3rem;
+
+  line-height: 1.8rem;
+  text-align: justify;
+  text-decoration: none;
+  letter-spacing: 0;
+}
+
+/* ================================================== */
+
+div#home-title{
+  margin: 8rem 0;
+}
+
+div#home-title>h1{
+  display: block;
+
+  width: 100%;
+  height: fit-content;
+
+  margin: 0;
+  padding: 0;
+
+  color: var(--text1);
+  font-family: "Jost", "Noto Sans JP", sans-serif;
+  font-weight: 800;
+  font-size: 6rem;
+
+  line-height: 6rem;
+  text-align: justify;
+  text-decoration: none;
+  letter-spacing: -0.2rem;
+}
+
+div#home-title>p{
+  display: block;
+
+  width: fit-content;
+  height: fit-content;
+
+  margin: 2rem 0 0 0;
+  padding: 1rem;
+
+  border: none;
+  border-radius: 1rem;
+
+  background-color: var(--text2);
+
+  color: var(--base1);
+  font-family: "Jost", "Noto Sans JP", sans-serif;
+  font-weight: 400;
+  font-size: 1.3rem;
+
+  line-height: 1.8rem;
+  text-align: justify;
+  text-decoration: none;
+  letter-spacing: 0;
+}
+
+/* ================================================== */
+
+div#home-reference>ul{
+  display: block;
+  
+  width: 100%;
+  height: fit-content;
+
+  margin: 1rem 0 0 0;
+  padding: 0;
+
+  list-style: none;
+}
+
+div#home-reference>ul>li{
+  display: block;
+
+  width: 100%;
+  height: fit-content;
+
+  margin: 0;
+  padding: 0;
+}
+
+div#home-reference>ul>li>a{
+  display: block;
+
+  width: fit-content;
+  height: fit-content;
+
+  margin: 0 0 0;
+  padding: 0;
+
+  color: var(--green1);
+  font-family: "Jost", "Noto Sans JP", sans-serif;
+  font-weight: 500;
+  font-size: 1.3rem;
+
+  line-height: 2rem;
+  text-align: justify;
+  text-decoration: underline;
+  letter-spacing: 0;
+}
+
+/* ================================================== */
+
+p#home-copyright{
+  display: block;
+
+  width: fit-content;
+  height: fit-content;
+
+  margin: 0;
+  padding: 0;
+
+  color: var(--text2);
+  font-family: "Jost", "Noto Sans JP", sans-serif;
+  font-weight: 400;
+  font-size: 1rem;
+
+  line-height: 1.5rem;
+  text-align: justify;
+  text-decoration: none;
+  letter-spacing: 0;
+}
