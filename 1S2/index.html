@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head prefix="og:https://deutsch.penguin92-prg.workers.dev/ website:https://deutsch.penguin92-prg.workers.dev/">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="ドイツ語WEB単語帳「どいちゅ」は、皆さんのドイツ語学習を手助けします。すぐにとりかかろう！">
+
+    <title>1S2の単語&emsp;どいちゅ | ドイツ語WEB単語帳</title>
+
+    <!-- リセットCSS読み込み -->
+    <link rel="stylesheet" href="../asset/css/reset.css">
+    
+    <!-- CSS読み込み -->
+    <link rel="stylesheet" href="../asset/css/variable.css">
+    <link rel="stylesheet" href="../asset/css/style.css">
+    <link rel="stylesheet" href="./asset/css/style-1S2.css">
+
+    <!-- GoogleFonts読み込み -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Jost:ital,wght@0,100..900;1,100..900&family=Noto+Sans+JP:wght@100..900&display=swap" rel="stylesheet">
+
+    <!-- マテリアルアイコン (Google Icons) -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+
+    <!-- ファビコン読み込み -->
+    <link rel="icon" type="image/png" href="/asset/favicon/favicon-96x96.png" sizes="96x96" />
+    <link rel="icon" type="image/svg+xml" href="/asset/favicon/favicon.svg" />
+    <link rel="shortcut icon" href="/asset/favicon/favicon.ico" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/asset/favicon/apple-touch-icon.png" />
+    <meta name="apple-mobile-web-app-title" content="どいちゅ" />
+    <link rel="manifest" href="/asset/favicon/site.webmanifest" />
+
+    <!-- ページデスクリプション -->
+    <meta property="og:url" content="https://deutsch.penguin92-prg.workers.dev/"/>
+    <meta property="og:type" content="website"/>
+    <meta property="og:title" content="どいちゅ | ドイツ語WEB単語帳"/>
+    <meta property="og:description" content="ドイツ語WEB単語帳「どいちゅ」は、皆さんのドイツ語学習を手助けします。すぐにとりかかろう！"/>
+    <meta property="og:site_name" content="どいちゅ | ドイツ語WEB単語帳"/>
+    <meta property="og:image" content="https://deutsch.penguin92-prg.workers.dev/asset/ogp.png"/>
+  </head>
+
+  <body>
+    <a href="../" id="back-btn">
+      <span class="material-symbols-outlined">arrow_back</span>
+    </a>
+
+    <button id="setting-window-open-btn">
+      <span class="material-symbols-outlined">settings</span>
+    </button>
+
+    <div id="setting-window">
+      <h3>単語帳の設定</h3>
+      <form id="setting-container">
+        
+        <!-- <div class="setting-item">
+          <label for="setting-lesson-from">Lektion</label>
+          <select name="lesson-from" id="setting-lesson-from">
+            <option value="8" selected>8</option>
+            <option value="9">9</option>
+            <option value="10">10</option>
+            <option value="11">11</option>
+            <option value="12">12</option>
+          </select>
+          <label>から</label>
+          <label for="setting-lesson-to">Lektion</label>
+          <select name="lesson-to" id="setting-lesson-to">
+            <option value="8">8</option>
+            <option value="9">9</option>
+            <option value="10">10</option>
+            <option value="11">11</option>
+            <option value="12" selected>12</option>
+          </select>
+          <label>まで</label>
+        </div> -->
+
+        <div class="setting-item">
+          <label for="setting-type">分類</label>
+          <select name="type" id="setting-type">
+            <option value="all" selected>すべて</option>
+            <option value="noun">名詞</option>
+            <option value="verb">動詞</option>
+            <option value="ad">形容詞・副詞</option>
+            <option value="preposition">前置詞</option>
+            <option value="conjunction">接続詞</option>
+            <option value="ediom">熟語</option>
+            <option value="others">その他</option>
+            <option value="all">すべて</option>
+          </select>
+        </div>
+      </form>
+
+      <div id="setting-button-container">
+        
+        <button id="setting-window-close-with-save-btn">
+          変更を適用して閉じる
+        </button>
+        <button id="setting-window-close-without-save-btn">
+          キャンセル
+        </button>
+      </div>
+    </div>
+
+    <div id="quiz-window">
+      <h3 class="active">
+        右上から設定ウィンドウを開き<br>
+        カテゴリを選択してください...
+      </h3>
+
+      <form id="quiz-container" data-type="">
+        <p id="quiz-japanese"></p>
+        <input type="text" id="quiz-answer" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" inputmode="latin" enterkeyhint="go">
+        
+        <p id="quiz-german"></p>
+
+        <span id="quiz-gender">
+          <p></p>
+          <p></p>
+        </span>
+
+        <!-- <span id="quiz-conjugation">
+          <p>ich-du-er-wir-ihr-sie</p>
+          <p></p>
+        </span> -->
+
+        <p id="quiz-note"></p>
+      </form>
+
+      <button id="quiz-next">
+        NEXT
+        <span class="material-symbols-outlined">arrow_forward</span>
+      </button>
+    </div>
+    
+    <script src="./asset/js/script.js"></script>
+  </body>
+</html>
