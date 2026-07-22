@@ -9,22 +9,22 @@ let word;
 
 
 
-window.addEventListener("load", function(){
+window.addEventListener("load", function () {
 
   // 設定画面開閉設定
-  document.getElementById("setting-window-open-btn").addEventListener("click", function(){
+  document.getElementById("setting-window-open-btn").addEventListener("click", function () {
     document.getElementById("setting-window").classList.toggle("active");
   });
 
-  document.getElementById("setting-window-close-with-save-btn").addEventListener("click", function(){
+  document.getElementById("setting-window-close-with-save-btn").addEventListener("click", function () {
     // 設定保存
     document.querySelector("#quiz-window>h3").classList.remove("active");
     document.getElementById("quiz-container").classList.add("active");
     document.getElementById("quiz-next").classList.add("active");
-    
+
     setQuizType(document.getElementById("setting-type").value);
 
-    if(!document.getElementById("quiz-japanese").textContent){
+    if (!document.getElementById("quiz-japanese").textContent) {
       word = getNextWord();
       newQuiz(word);
     }
@@ -32,20 +32,20 @@ window.addEventListener("load", function(){
     document.getElementById("setting-window").classList.remove("active");
   });
 
-  document.getElementById("setting-window-close-without-save-btn").addEventListener("click", function(){
+  document.getElementById("setting-window-close-without-save-btn").addEventListener("click", function () {
     document.getElementById("setting-window").classList.remove("active");
   });
 
   document.querySelectorAll("#quiz-select-category-container>div>button").forEach(btn => {
-    btn.addEventListener("click", function(){
-      if(confirm(`カテゴリを ${this.innerText} に設定しますか?`)){
+    btn.addEventListener("click", function () {
+      if (confirm(`カテゴリを ${this.innerText} に設定しますか?`)) {
         document.getElementById("quiz-select-category-container").classList.remove("active");
         document.getElementById("quiz-container").classList.add("active");
         document.getElementById("quiz-next").classList.add("active");
 
         setQuizType(this.dataset.value);
 
-        if(!document.getElementById("quiz-japanese").textContent){
+        if (!document.getElementById("quiz-japanese").textContent) {
           word = getNextWord();
           newQuiz(word);
         }
@@ -67,7 +67,7 @@ window.addEventListener("load", async () => {
 
   word = getNextWord();
 
-  document.getElementById("quiz-next").addEventListener("click", function(){
+  document.getElementById("quiz-next").addEventListener("click", function () {
     word = getNextWord();
     newQuiz(word);
   });
@@ -110,11 +110,11 @@ const SUPABASE_URL = "https://lrytnwoeldjavdjoidui.supabase.co";
 const SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImxyeXRud29lbGRqYXZkam9pZHVpIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODAzOTg3NjMsImV4cCI6MjA5NTk3NDc2M30.rydduNQJkYjG1hxUUA2exGPulDXNGndh_Y-YoQsAiGU";
 const SUPABASE_TABLE_NAME = "1S2";
 
-const ALL_TYPES = ["all", "noun", "verb", "ad", "preposition", "conjunction", "others", "ediom"];
+const ALL_TYPES = ["all", "noun", "verb", "ad", "preposition", "conjunction", "others", "ediom", "text"];
 
 let WORDS_BY_TYPE = {
 };
-for(type of ALL_TYPES){
+for (type of ALL_TYPES) {
   WORDS_BY_TYPE[type] = [];
 }
 console.log(WORDS_BY_TYPE);
@@ -164,7 +164,7 @@ async function loadWords() {
   }
 }
 
-function setQuizType(type){
+function setQuizType(type) {
   document.getElementById("quiz-answer").value = "";
   document.getElementById("quiz-german").textContent = "";
   document.getElementById("quiz-gender").querySelectorAll("p")[0].dataset.gender = "";
@@ -200,7 +200,7 @@ function getNextWord() {
   return shuffledWords[currentIndex++];
 }
 
-function newQuiz(w){
+function newQuiz(w) {
   // 初期化
   document.getElementById("quiz-answer").value = "";
   document.getElementById("quiz-german").textContent = "";
@@ -213,16 +213,16 @@ function newQuiz(w){
 
   document.getElementById("quiz-japanese").textContent = w.japanese;
 
-  document.getElementById("quiz-answer").focus({preventScroll: true});
+  document.getElementById("quiz-answer").focus({ preventScroll: true });
 }
 
-function checkAnswer(w){
+function checkAnswer(w) {
   console.log("単語", `"${w.german}"`, "id", w.id);
-  
+
   const answer = document.getElementById("quiz-answer").value;
   const german = w.german
   const gender = w.gender;
-  
+
   // let conjugation = "";
   // for(let i=1; i<germanArray.length; i++){
   //   conjugation += (germanArray[i] + "-");
@@ -233,14 +233,14 @@ function checkAnswer(w){
   const genderPs = document.getElementById("quiz-gender").querySelectorAll("p");
 
   document.getElementById("quiz-german").textContent = (gender == null || gender == "pl" ? german : gender + " " + german);
-  if(answer == (gender == null || gender == "pl" ? german : gender + " " + german)){
+  if (answer == (gender == null || gender == "pl" ? german : gender + " " + german)) {
     document.getElementById("quiz-german").dataset.t_or_f = "true";
   }
-  else{
+  else {
     document.getElementById("quiz-german").dataset.t_or_f = "false";
   }
 
-  switch(gender){
+  switch (gender) {
     case "der":
       genderPs[0].dataset.gender = "m";
       genderPs[0].textContent = "男性";
@@ -256,11 +256,11 @@ function checkAnswer(w){
     default:
       genderPs[0].dataset.gender = "pl";
       genderPs[0].textContent = "複数";
-      break;      
+      break;
   }
   // genderPs[1].textContent = gender + " " + german;
   // genderPs[1].textContent = "男性弱変化"
-  
+
   // document.getElementById("quiz-conjugation").querySelectorAll("p")[1].textContent = conjugation;
 
   document.getElementById("quiz-note").textContent = note;
