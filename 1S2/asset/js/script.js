@@ -110,7 +110,7 @@ const SUPABASE_URL = "https://lrytnwoeldjavdjoidui.supabase.co";
 const SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImxyeXRud29lbGRqYXZkam9pZHVpIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODAzOTg3NjMsImV4cCI6MjA5NTk3NDc2M30.rydduNQJkYjG1hxUUA2exGPulDXNGndh_Y-YoQsAiGU";
 const SUPABASE_TABLE_NAME = "1S2";
 
-const ALL_TYPES = ["all", "noun", "verb", "ad", "preposition", "conjunction", "others", "ediom", "text"];
+const ALL_TYPES = ["all", "noun", "verb", "ad", "preposition", "conjunction", "others", "ediom", "text", "übungen"];
 
 let WORDS_BY_TYPE = {
 };
