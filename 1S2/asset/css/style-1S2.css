@@ -192,6 +192,8 @@ div.setting-item>label{
   letter-spacing: 0;
 }
 
+/* ================================================== */
+
 div.setting-item>select{
   display: block;
 
@@ -215,6 +217,54 @@ div.setting-item>select{
   text-align: center;
   text-decoration: none;
   letter-spacing: 0;
+}
+
+/* ================================================== */
+
+div.setting-item span{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+
+  width: fit-content;
+  height: 100%;
+
+  margin: 0;
+  padding: 0;
+}
+div.setting-item>span{
+  gap: 3rem;
+}
+div.setting-item>span span{
+  gap: 2rem;
+}
+
+div.setting-item span>label{
+  display: inline-block;
+
+  width: fit-content;
+  height: 100%;
+
+  margin: 0;
+  padding: 0;
+
+  color: var(--text1);
+  font-family: "Jost", "Noto Sans JP", sans-serif;
+  font-weight: 500;
+  font-size: 1.2rem;
+
+  line-height: 3rem;
+  text-align: center;
+  text-decoration: none;
+  letter-spacing: 0;
+}
+
+div.setting-item span>input[type="radio"]{
+  margin: 0;
+  padding: 0;
+
+  transform: scale(1.5);
 }
 
 /* ================================================== */

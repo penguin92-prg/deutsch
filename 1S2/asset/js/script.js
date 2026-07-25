@@ -22,6 +22,8 @@ window.addEventListener("load", function () {
     document.getElementById("quiz-container").classList.add("active");
     document.getElementById("quiz-next").classList.add("active");
 
+    shuffleFlag = (document.querySelector('input[name="random"]:checked').value === "true");
+    
     setQuizType(document.getElementById("setting-type").value);
 
     if (!document.getElementById("quiz-japanese").textContent) {
@@ -122,6 +124,7 @@ console.log(WORDS_BY_TYPE);
 let currentType = "all";
 
 let ALL_WORDS = [];
+let shuffleFlag = true;
 let shuffledWords;
 let currentIndex = 0;
 
@@ -173,7 +176,12 @@ function setQuizType(type) {
   document.getElementById("quiz-note").textContent = "";
 
   currentType = type;
-  shuffledWords = shuffle(WORDS_BY_TYPE[type]);
+  if(shuffleFlag){
+    shuffledWords = shuffle(WORDS_BY_TYPE[type]);
+  }
+  else{
+    shuffledWords = WORDS_BY_TYPE[type];
+  }
   currentIndex = 0;
 
   document.getElementById("quiz-container").dataset.type = type;
@@ -193,7 +201,12 @@ function shuffle(array) {
 
 function getNextWord() {
   if (currentIndex >= shuffledWords.length) {
-    shuffledWords = shuffle(WORDS_BY_TYPE[currentType]);
+    if (shuffleFlag) {
+      shuffledWords = shuffle(WORDS_BY_TYPE[currentType]);
+    }
+    else {
+      shuffledWords = WORDS_BY_TYPE[currentType];
+    }
     currentIndex = 0;
   }
 
