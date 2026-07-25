@@ -83,6 +83,7 @@ window.addEventListener("load", async () => {
 // ==================================================
 // ==================================================
 // ==================================================
+
 /*
 【後学のためのメモ】
 SupaBaseからデータを取得するには
@@ -103,9 +104,6 @@ using (true);
 すべての行に対するselectの実行権限を与える
 これにより、APIを実行することですべてのレコードを取得できるようになる
 */
-// ==================================================
-// ==================================================
-// ==================================================
 
 // SupaBaseから全データを取得
 const SUPABASE_URL = "https://lrytnwoeldjavdjoidui.supabase.co";
@@ -114,8 +112,7 @@ const SUPABASE_TABLE_NAME = "1S2";
 
 const ALL_TYPES = ["all", "noun", "verb", "ad", "preposition", "conjunction", "others", "ediom", "text", "übungen"];
 
-let WORDS_BY_TYPE = {
-};
+let WORDS_BY_TYPE = {};
 for (type of ALL_TYPES) {
   WORDS_BY_TYPE[type] = [];
 }
