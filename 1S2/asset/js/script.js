@@ -11,6 +11,13 @@ let word;
 
 window.addEventListener("load", function () {
 
+  if(!window.localStorage){
+    console.log("LocalStorage非対応...");
+  }
+  else{
+    console.log("LocalStorage対応");
+  }
+
   // 設定画面開閉設定
   document.getElementById("setting-window-open-btn").addEventListener("click", function () {
     document.getElementById("setting-window").classList.toggle("active");
@@ -146,22 +153,30 @@ async function loadWords() {
     }
 
     ALL_WORDS = await response.json();
+    window.localStorage.setItem("ALL_WORDS", JSON.stringify(ALL_WORDS));
 
-    for (const word of ALL_WORDS) {
-      if (WORDS_BY_TYPE[word.type]) {
-        WORDS_BY_TYPE[word.type].push(word);
-      }
-    }
-    WORDS_BY_TYPE.all = [...ALL_WORDS];
+    console.log(JSON.parse(window.localStorage.getItem("ALL_WORDS")));
 
-    setQuizType("all")
-
-    console.log(`取得件数: ${ALL_WORDS.length}`);
-
-    shuffledWords = shuffle(ALL_WORDS);
+    initializeWords(ALL_WORDS);
   } catch (error) {
     console.error("単語データの取得に失敗:", error);
+    initializeWords(JSON.parse(window.localStorage.getItem("ALL_WORDS")));
   }
+}
+
+function initializeWords(all_words){
+  for (const word of all_words) {
+    if (WORDS_BY_TYPE[word.type]) {
+      WORDS_BY_TYPE[word.type].push(word);
+    }
+  }
+  WORDS_BY_TYPE.all = [...all_words];
+
+  setQuizType("all")
+
+  console.log(`取得件数: ${all_words.length}`);
+
+  shuffledWords = shuffle(all_words);
 }
 
 function setQuizType(type) {
@@ -216,8 +231,8 @@ function newQuiz(w) {
   document.getElementById("quiz-german-container").classList.remove("active");
   document.getElementById("quiz-german").textContent = "";
   document.getElementById("quiz-gender").classList.remove("active");
-  document.getElementById("quiz-gender").querySelectorAll("p").dataset.gender = "";
-  document.getElementById("quiz-gender").querySelectorAll("p").textContent = "";
+  document.getElementById("quiz-gender").querySelector("p").dataset.gender = "";
+  document.getElementById("quiz-gender").querySelector("p").textContent = "";
   document.getElementById("quiz-note-container").classList.remove("active");
   document.getElementById("quiz-note").textContent = "";
 

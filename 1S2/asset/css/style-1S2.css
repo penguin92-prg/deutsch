@@ -448,6 +448,7 @@ form#quiz-container>div#quiz-card>div#quiz-answer-border>input#quiz-answer{
   margin: 0;
   padding: 1rem 2rem;
   
+  outline: none;
   border: none;
   border-radius: 1rem;
 
@@ -465,6 +466,7 @@ form#quiz-container>div#quiz-card>div#quiz-answer-border>input#quiz-answer{
 
   resize: none;
 }
+
 
 /* ================================================== */
 /* ================================================== */
@@ -742,6 +744,7 @@ button#quiz-next{
   margin: 0;
   padding: 1rem 2rem;
 
+  outline: none;
   border: none;
   border-radius: 1rem;
   
