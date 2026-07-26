@@ -23,7 +23,7 @@ window.addEventListener("load", function () {
     document.getElementById("quiz-next").classList.add("active");
 
     shuffleFlag = (document.querySelector('input[name="random"]:checked').value === "true");
-    
+
     setQuizType(document.getElementById("setting-type").value);
 
     if (!document.getElementById("quiz-japanese").textContent) {
@@ -173,10 +173,10 @@ function setQuizType(type) {
   document.getElementById("quiz-note").textContent = "";
 
   currentType = type;
-  if(shuffleFlag){
+  if (shuffleFlag) {
     shuffledWords = shuffle(WORDS_BY_TYPE[type]);
   }
-  else{
+  else {
     shuffledWords = WORDS_BY_TYPE[type];
   }
   currentIndex = 0;
@@ -213,10 +213,12 @@ function getNextWord() {
 function newQuiz(w) {
   // 初期化
   document.getElementById("quiz-answer").value = "";
+  document.getElementById("quiz-german-container").classList.remove("active");
   document.getElementById("quiz-german").textContent = "";
-  document.getElementById("quiz-gender").querySelectorAll("p")[0].dataset.gender = "";
-  document.getElementById("quiz-gender").querySelectorAll("p").forEach(e => e.textContent = "");
-  // document.getElementById("quiz-conjugation").querySelectorAll("p")[1].textContent = "";
+  document.getElementById("quiz-gender").classList.remove("active");
+  document.getElementById("quiz-gender").querySelectorAll("p").dataset.gender = "";
+  document.getElementById("quiz-gender").querySelectorAll("p").textContent = "";
+  document.getElementById("quiz-note-container").classList.remove("active");
   document.getElementById("quiz-note").textContent = "";
 
   document.getElementById("quiz-next").setAttribute("disabled", "");
@@ -240,40 +242,51 @@ function checkAnswer(w) {
   // conjugation = conjugation.slice(0, -1);
   const note = w.note;
 
-  const genderPs = document.getElementById("quiz-gender").querySelectorAll("p");
+  const genderP = document.getElementById("quiz-gender").querySelector("p");
 
+  document.getElementById("quiz-german-container").classList.add("active");
   document.getElementById("quiz-german").textContent = (gender == null || gender == "pl" ? german : gender + " " + german);
   if (answer == (gender == null || gender == "pl" ? german : gender + " " + german)) {
-    document.getElementById("quiz-german").dataset.t_or_f = "true";
+    document.getElementById("quiz-german-container").dataset.t_or_f = "true";
+    document.getElementById("quiz-german-judgement").textContent = "正解！";
   }
   else {
-    document.getElementById("quiz-german").dataset.t_or_f = "false";
+    document.getElementById("quiz-german-container").dataset.t_or_f = "false";
+    document.getElementById("quiz-german-judgement").textContent = "不正解...";
   }
 
-  switch (gender) {
-    case "der":
-      genderPs[0].dataset.gender = "m";
-      genderPs[0].textContent = "男性";
-      break;
-    case "das":
-      genderPs[0].dataset.gender = "n";
-      genderPs[0].textContent = "中性";
-      break;
-    case "die":
-      genderPs[0].dataset.gender = "f";
-      genderPs[0].textContent = "女性";
-      break;
-    default:
-      genderPs[0].dataset.gender = "pl";
-      genderPs[0].textContent = "複数";
-      break;
+  if (gender == "" || gender == null) {
+    document.getElementById("quiz-gender").classList.remove("active");
   }
-  // genderPs[1].textContent = gender + " " + german;
-  // genderPs[1].textContent = "男性弱変化"
+  else {
+    document.getElementById("quiz-gender").classList.add("active");
+    switch (gender) {
+      case "der":
+        genderP.dataset.gender = "m";
+        genderP.textContent = "男性";
+        break;
+      case "das":
+        genderP.dataset.gender = "n";
+        genderP.textContent = "中性";
+        break;
+      case "die":
+        genderP.dataset.gender = "f";
+        genderP.textContent = "女性";
+        break;
+      default:
+        genderP.dataset.gender = "pl";
+        genderP.textContent = "複数";
+        break;
+    }
+  }
 
-  // document.getElementById("quiz-conjugation").querySelectorAll("p")[1].textContent = conjugation;
-
-  document.getElementById("quiz-note").textContent = note;
+  if (note == "" || note == null) {
+    document.getElementById("quiz-note-container").classList.remove("active");
+  }
+  else {
+    document.getElementById("quiz-note-container").classList.add("active");
+    document.getElementById("quiz-note").innerHTML = note;
+  }
 
   document.getElementById("quiz-next").removeAttribute("disabled");
   document.getElementById("quiz-next").focus();

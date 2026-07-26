@@ -12,8 +12,8 @@
   <link rel="stylesheet" href="../asset/css/reset.css">
 
   <!-- CSS読み込み -->
-  <link rel="stylesheet" href="../asset/css/variable.css">
-  <link rel="stylesheet" href="../asset/css/style.css">
+  <link rel="stylesheet" href="./asset/css/variable.css">
+  <link rel="stylesheet" href="./asset/css/style.css">
   <link rel="stylesheet" href="./asset/css/style-1S2.css">
 
   <!-- GoogleFonts読み込み -->
@@ -129,14 +129,23 @@
     </h3>
 
     <form id="quiz-container" data-type="">
-      <p id="quiz-japanese"></p>
-      <input type="text" id="quiz-answer" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"
-        inputmode="latin" enterkeyhint="go">
+      <div id="quiz-card">
+        <p id="quiz-japanese"></p>
+        <div id="quiz-answer-border">
+          <input type="text" id="quiz-answer" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" inputmode="latin" enterkeyhint="go" placeholder="ドイツ語で入力してください...">
+        </div>
+      </div>
 
-      <p id="quiz-german"></p>
+      <div id="quiz-german-container">
+        <span id="quiz-german-icon-true" class="material-symbols-outlined">check</span>
+        <span id="quiz-german-icon-false" class="material-symbols-outlined">close</span>
+        <div>
+          <p id="quiz-german-judgement"></p>
+          <p id="quiz-german"></p>
+        </div>
+      </div>
 
       <span id="quiz-gender">
-        <p></p>
         <p></p>
       </span>
 
@@ -145,11 +154,17 @@
           <p></p>
         </span> -->
 
-      <p id="quiz-note"></p>
+      <div id="quiz-note-container">
+        <h3>
+          <span class="material-symbols-outlined">lightbulb_2</span>
+          学習のヒント
+        </h3>
+        <p id="quiz-note"></p>
+      </div>
     </form>
 
     <button id="quiz-next">
-      NEXT
+      次の問題&nbsp;
       <span class="material-symbols-outlined">arrow_forward</span>
     </button>
   </div>
