@@ -322,6 +322,109 @@ div#setting-window>div#setting-button-container>button#setting-window-close-with
 /* ================================================== */
 /* ================================================== */
 
+div#progress-bar-container{
+  position: fixed;
+  top: 0;
+  left: calc(5rem + 1rem);
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-content: center;
+  gap: 0.5rem;
+
+  width: calc(100% - 5rem * 2 - 1rem * 2 - 1rem * 2);
+  height: 3rem;
+
+  margin: 0;
+  padding: 1rem;
+
+  border: none;
+  border-radius: 0 0 1rem 1rem;
+  
+  background-color: var(--base1);
+
+  box-shadow: var(--shadowRaised);
+}
+
+/* ================================================== */
+
+div#progress-bar-container>div{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  gap: 0;
+
+  width: 100%;
+  height: fit-content;
+
+  margin: 0;
+  padding: 0;
+}
+
+div#progress-bar-container>div>h3{
+  display: block;
+
+  width: fit-content;
+  height: fit-content;
+
+  margin: 0;
+  padding: 0;
+
+  color: var(--text2);
+  font-family: "Jost", "Noto Sans JP", sans-serif;
+  font-weight: 400;
+  font-size: 1.2rem;
+
+  line-height: 2rem;
+  text-align: center;
+  text-decoration: none;
+  letter-spacing: 0;
+}
+
+div#progress-bar-container>span#progress-bar-background{
+  position: relative;
+
+  display: block;
+
+  width: 100%;
+  height: 0.5rem;
+
+  margin: 0;
+  padding: 0;
+
+  border: none;
+  border-radius: 100rem;
+
+  background-color: var(--base2);
+
+  overflow: hidden;
+}
+
+div#progress-bar-container>span#progress-bar-background>span#progress-bar{
+  position: absolute;
+  top: 0;
+  left: 0;
+
+  display: block;
+
+  /* width: calc(attr(data-progress type(<number>)) * 1%); */
+  height: 100%;
+
+  margin: 0;
+  padding: 0;
+
+  border: none;
+  border-radius: 100rem;
+
+  background: linear-gradient(90deg,#307af4 0%, #7f5cec 100%);
+}
+
+/* ================================================== */
+/* ================================================== */
+/* ================================================== */
+
 div#quiz-window{
   display: flex;
   flex-direction: column;

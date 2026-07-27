@@ -222,6 +222,10 @@ function getNextWord() {
     currentIndex = 0;
   }
 
+  document.getElementById("progress-bar-label1").textContent = String(currentIndex+1) + " / " + String(shuffledWords.length);
+  document.getElementById("progress-bar-label2").textContent = "進捗 " + String(Math.floor(((currentIndex)/shuffledWords.length)*100), 2) + "%";
+  document.getElementById("progress-bar").style.width = String(((currentIndex)/shuffledWords.length)*100) + "%";
+
   return shuffledWords[currentIndex++];
 }
 
