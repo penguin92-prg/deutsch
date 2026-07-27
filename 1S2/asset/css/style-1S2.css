@@ -436,6 +436,9 @@ form#quiz-container>div#quiz-card>div#quiz-answer-border{
   border: none;
   border-radius: 1.2rem;
   
+  background: var(--base3);
+}
+form#quiz-container>div#quiz-card>div#quiz-answer-border:has(input#quiz-answer:focus){
   background: linear-gradient(90deg,#307af4 0%, #7f5cec 100%);
 }
 
@@ -562,7 +565,7 @@ form#quiz-container>div#quiz-german-container>div>p#quiz-german-judgement{
 form#quiz-container>div#quiz-german-container>div>p#quiz-german{
   font-weight: 400;
   font-size: 1.6rem;
-  line-height: 1.6rem;
+  line-height: 2rem;
 }
 form#quiz-container>div#quiz-german-container[data-t_or_f="true"]>div>p{
   color: var(--green-text);
