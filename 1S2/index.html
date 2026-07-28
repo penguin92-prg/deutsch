@@ -51,8 +51,8 @@
 
   <div id="progress-bar-container">
     <div>
-      <h3 id="progress-bar-label1">n/875問</h3>
-      <h3 id="progress-bar-label2">進捗: 100%</h3>
+      <h3 id="progress-bar-label1"></h3>
+      <h3 id="progress-bar-label2"></h3>
     </div>
     <span id="progress-bar-background">
       <span id="progress-bar"></span>
@@ -101,7 +101,6 @@
           <option value="others">その他</option>
           <option value="text">Grammatik内の例文</option>
           <option value="übungen">Übungen（穴埋め）</option>
-          <option value="all">すべて</option>
         </select>
       </div>
 
@@ -155,8 +154,8 @@
         </div>
       </div>
 
-      <span id="quiz-gender">
-        <p></p>
+      <span id="quiz-attribute-container">
+        
       </span>
 
       <div id="quiz-note-container">
@@ -168,10 +167,16 @@
       </div>
     </form>
 
-    <button id="quiz-next">
-      次の問題&nbsp;
-      <span class="material-symbols-outlined">arrow_forward</span>
-    </button>
+    <div id="quiz-button-container">
+      <button id="quiz-next">
+        次の問題&nbsp;
+        <span class="material-symbols-outlined">arrow_forward</span>
+      </button>
+  
+      <button id="quiz-previous" disabled>
+        &nbsp;前の問題&nbsp;
+      </button>
+    </div>
   </div>
 
   <script src="./asset/js/script.js"></script>

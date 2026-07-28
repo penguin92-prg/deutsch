@@ -10,7 +10,6 @@ let word;
 
 
 window.addEventListener("load", function () {
-
   if(!window.localStorage){
     console.log("LocalStorage非対応...");
   }
@@ -28,38 +27,19 @@ window.addEventListener("load", function () {
     document.querySelector("#quiz-window>h3").classList.remove("active");
     document.getElementById("quiz-container").classList.add("active");
     document.getElementById("quiz-next").classList.add("active");
+    document.getElementById("quiz-previous").classList.add("active");
 
     shuffleFlag = (document.querySelector('input[name="random"]:checked').value === "true");
 
     setQuizType(document.getElementById("setting-type").value);
-
-    if (!document.getElementById("quiz-japanese").textContent) {
-      word = getNextWord();
-      newQuiz(word);
-    }
+    
+    document.getElementById("progress-bar-container").classList.add("active");
 
     document.getElementById("setting-window").classList.remove("active");
   });
 
   document.getElementById("setting-window-close-without-save-btn").addEventListener("click", function () {
     document.getElementById("setting-window").classList.remove("active");
-  });
-
-  document.querySelectorAll("#quiz-select-category-container>div>button").forEach(btn => {
-    btn.addEventListener("click", function () {
-      if (confirm(`カテゴリを ${this.innerText} に設定しますか?`)) {
-        document.getElementById("quiz-select-category-container").classList.remove("active");
-        document.getElementById("quiz-container").classList.add("active");
-        document.getElementById("quiz-next").classList.add("active");
-
-        setQuizType(this.dataset.value);
-
-        if (!document.getElementById("quiz-japanese").textContent) {
-          word = getNextWord();
-          newQuiz(word);
-        }
-      }
-    });
   });
 
   // 単語入力の挙動を設定（→ボタンが押されたら自動でキーボードを非表示化）
@@ -72,12 +52,14 @@ window.addEventListener("load", function () {
 
 window.addEventListener("load", async () => {
   await loadWords();
-  // console.log(ALL_WORDS);
-
-  word = getNextWord();
 
   document.getElementById("quiz-next").addEventListener("click", function () {
     word = getNextWord();
+    newQuiz(word);
+  });
+
+  document.getElementById("quiz-previous").addEventListener("click", function () {
+    word = getPreviousWord();
     newQuiz(word);
   });
 });
@@ -180,11 +162,10 @@ function initializeWords(all_words){
 }
 
 function setQuizType(type) {
+
   document.getElementById("quiz-answer").value = "";
   document.getElementById("quiz-german").textContent = "";
-  document.getElementById("quiz-gender").querySelectorAll("p")[0].dataset.gender = "";
-  document.getElementById("quiz-gender").querySelectorAll("p").forEach(e => e.textContent = "");
-  // document.getElementById("quiz-conjugation").querySelectorAll("p")[1].textContent = "";
+  document.getElementById("quiz-attribute-container").innerHTML = null;
   document.getElementById("quiz-note").textContent = "";
 
   currentType = type;
@@ -196,10 +177,12 @@ function setQuizType(type) {
   }
   currentIndex = 0;
 
-  document.getElementById("quiz-container").dataset.type = type;
-
-  word = getNextWord();
+  word = shuffledWords[currentIndex];
   newQuiz(word);
+
+  updateProgressBar();
+
+  document.getElementById("quiz-container").dataset.type = type;
 }
 
 function shuffle(array) {
@@ -212,7 +195,7 @@ function shuffle(array) {
 }
 
 function getNextWord() {
-  if (currentIndex >= shuffledWords.length) {
+  if (currentIndex >= shuffledWords.length - 1) {
     if (shuffleFlag) {
       shuffledWords = shuffle(WORDS_BY_TYPE[currentType]);
     }
@@ -221,12 +204,35 @@ function getNextWord() {
     }
     currentIndex = 0;
   }
+  else{
+    currentIndex++;
+  }
 
-  document.getElementById("progress-bar-label1").textContent = String(currentIndex+1) + " / " + String(shuffledWords.length);
-  document.getElementById("progress-bar-label2").textContent = "進捗 " + String(Math.floor(((currentIndex)/shuffledWords.length)*100), 2) + "%";
-  document.getElementById("progress-bar").style.width = String(((currentIndex)/shuffledWords.length)*100) + "%";
+  updateProgressBar();
 
-  return shuffledWords[currentIndex++];
+  if(currentIndex <= 0){
+    document.getElementById("quiz-previous").setAttribute("disabled", "");
+  }
+  else{
+    document.getElementById("quiz-previous").removeAttribute("disabled");
+  }
+  
+  return shuffledWords[currentIndex];
+}
+
+function getPreviousWord() {
+  currentIndex--;
+
+  updateProgressBar();
+
+  if(currentIndex <= 0){
+    document.getElementById("quiz-previous").setAttribute("disabled", "");
+  }
+  else{
+    document.getElementById("quiz-previous").removeAttribute("disabled");
+  }
+
+  return shuffledWords[currentIndex];
 }
 
 function newQuiz(w) {
@@ -234,9 +240,7 @@ function newQuiz(w) {
   document.getElementById("quiz-answer").value = "";
   document.getElementById("quiz-german-container").classList.remove("active");
   document.getElementById("quiz-german").textContent = "";
-  document.getElementById("quiz-gender").classList.remove("active");
-  document.getElementById("quiz-gender").querySelector("p").dataset.gender = "";
-  document.getElementById("quiz-gender").querySelector("p").textContent = "";
+  document.getElementById("quiz-attribute-container").innerHTML = null;
   document.getElementById("quiz-note-container").classList.remove("active");
   document.getElementById("quiz-note").textContent = "";
 
@@ -253,15 +257,9 @@ function checkAnswer(w) {
   const answer = document.getElementById("quiz-answer").value;
   const german = w.german
   const gender = w.gender;
-
-  // let conjugation = "";
-  // for(let i=1; i<germanArray.length; i++){
-  //   conjugation += (germanArray[i] + "-");
-  // }
-  // conjugation = conjugation.slice(0, -1);
+  const separatable = w.separatable;
   const note = w.note;
-
-  const genderP = document.getElementById("quiz-gender").querySelector("p");
+  const lesson = w.lesson;
 
   document.getElementById("quiz-german-container").classList.add("active");
   document.getElementById("quiz-german").textContent = (gender == null || gender == "pl" ? german : gender + " " + german);
@@ -274,29 +272,58 @@ function checkAnswer(w) {
     document.getElementById("quiz-german-judgement").textContent = "不正解...";
   }
 
-  if (gender == "" || gender == null) {
-    document.getElementById("quiz-gender").classList.remove("active");
-  }
-  else {
-    document.getElementById("quiz-gender").classList.add("active");
+  // 属性指定
+  document.getElementById("quiz-attribute-container").innerHTML = null;
+  if (gender != "" && gender != null) {
+    let genderElement = document.createElement("span");
     switch (gender) {
       case "der":
-        genderP.dataset.gender = "m";
-        genderP.textContent = "男性";
+        genderElement.style.backgroundColor = "var(--gender-m-background)";
+        genderElement.style.color = "var(--gender-m-text)";
+        genderElement.innerText = "男性";
         break;
       case "das":
-        genderP.dataset.gender = "n";
-        genderP.textContent = "中性";
+        genderElement.style.backgroundColor = "var(--gender-n-background)";
+        genderElement.style.color = "var(--gender-n-text)";
+        genderElement.innerText = "中性";
         break;
       case "die":
-        genderP.dataset.gender = "f";
-        genderP.textContent = "女性";
+        genderElement.style.backgroundColor = "var(--gender-f-background)";
+        genderElement.style.color = "var(--gender-f-text)";
+        genderElement.innerText = "女性";
         break;
       default:
-        genderP.dataset.gender = "pl";
-        genderP.textContent = "複数";
+        genderElement.style.backgroundColor = "var(--gender-pl-background)";
+        genderElement.style.color = "var(--gender-pl-text)";
+        genderElement.innerText = "複数";
         break;
     }
+    document.getElementById("quiz-attribute-container").appendChild(genderElement);
+  }
+  if(separatable != "" && separatable != null){
+    let separatableElement = document.createElement("span");
+    console.log(separatable);
+    switch (separatable) {
+      case "TRUE":
+        separatableElement.style.backgroundColor = "var(--separatable-true-background)";
+        separatableElement.style.color = "var(--separatable-true-text)";
+        separatableElement.innerText = "分離動詞";
+        break;
+      case "FALSE":
+        separatableElement.style.backgroundColor = "var(--separatable-false-background)";
+        separatableElement.style.color = "var(--separatable-false-text)";
+        separatableElement.innerText = "非分離動詞";
+        break;
+    }
+    document.getElementById("quiz-attribute-container").appendChild(separatableElement);
+  }
+  if(lesson != "" && lesson != null){
+    let lessonElement = document.createElement("span");
+    console.log(lesson);
+    lessonElement.style.backgroundColor = "var(--lesson-background)";
+    lessonElement.style.color = "var(--lesson-text)";
+    lessonElement.innerText = "Lektion" + lesson;
+    document.getElementById("quiz-attribute-container").appendChild(lessonElement);
   }
 
   if (note == "" || note == null) {
@@ -309,4 +336,10 @@ function checkAnswer(w) {
 
   document.getElementById("quiz-next").removeAttribute("disabled");
   document.getElementById("quiz-next").focus();
+}
+
+function updateProgressBar(){
+  document.getElementById("progress-bar-label1").textContent = `${currentIndex + 1} / ${shuffledWords.length}`;
+  document.getElementById("progress-bar-label2").textContent = `進捗 ${((currentIndex / shuffledWords.length) * 100).toFixed(2)}%`;
+  document.getElementById("progress-bar").style.width = `${(currentIndex / shuffledWords.length) * 100}%`
 }

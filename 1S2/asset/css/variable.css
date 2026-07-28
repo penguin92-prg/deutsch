@@ -28,6 +28,11 @@
   --gender-f-text: var(--red-text);
   --gender-pl-background: #fbe4cd;
   --gender-pl-text: #b16820;
+
+  --separatable-true-background: #c5f1f1;
+  --separatable-true-text: #0a7375;
+  --separatable-false-background: #decbf7;
+  --separatable-false-text: #461684;
 }
 
 :root{
