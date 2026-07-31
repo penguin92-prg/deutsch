@@ -34,7 +34,7 @@ window.addEventListener("load", function () {
 });
 
 window.addEventListener("load", async () => {
-  await loadWords("1S2");
+  // await loadWords("1S2");
 
   document.getElementById("quiz-next").addEventListener("click", function () {
     word = getNextWord();
@@ -72,17 +72,18 @@ async function saveSetting(){
   for(lektion of lektionChecked){
     await loadWords(lektion);
   }
-
-  document.querySelector("#quiz-window>h3").classList.remove("active");
-  document.getElementById("quiz-container").classList.add("active");
-  document.getElementById("quiz-next").classList.add("active");
-  document.getElementById("quiz-previous").classList.add("active");
+  initWords(ALL_WORDS);
 
   shuffleFlag = (document.querySelector('input[name="random"]:checked').value === "true");
+  
+  if(setQuizType(document.getElementById("setting-type").value)){
+    document.querySelector("#quiz-window>h3").classList.remove("active");
+    document.getElementById("quiz-container").classList.add("active");
+    document.getElementById("quiz-next").classList.add("active");
+    document.getElementById("quiz-previous").classList.add("active");
+    document.getElementById("progress-bar-container").classList.add("active");
+  }
 
-  setQuizType(document.getElementById("setting-type").value);
-
-  document.getElementById("progress-bar-container").classList.add("active");
 }
 
 
@@ -122,9 +123,12 @@ const SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBh
 const ALL_TYPES = ["all", "noun", "verb", "ad", "preposition", "conjunction", "others", "ediom", "text", "übungen"];
 
 let WORDS_BY_TYPE = {};
-for (type of ALL_TYPES) {
-  WORDS_BY_TYPE[type] = [];
+function initWordsByType(){
+  for (type of ALL_TYPES) {
+    WORDS_BY_TYPE[type] = [];
+  }
 }
+initWordsByType();
 
 let currentType = "all";
 
@@ -159,14 +163,16 @@ async function loadWords(tableName) {
     // window.localStorage.setItem("ALL_WORDS", JSON.stringify(ALL_WORDS));
     // console.log(JSON.parse(window.localStorage.getItem("ALL_WORDS")));
 
-    initializeWords(ALL_WORDS);
   } catch (error) {
     console.error("単語データの取得に失敗:", error);
-    initializeWords(JSON.parse(window.localStorage.getItem("ALL_WORDS")));
+    // initializeWords(JSON.parse(window.localStorage.getItem("ALL_WORDS")));
   }
 }
 
-function initializeWords(all_words){
+function initWords(all_words){
+
+  initWordsByType();
+
   for (const word of all_words) {
     if (WORDS_BY_TYPE[word.type]) {
       WORDS_BY_TYPE[word.type].push(word);
@@ -174,11 +180,8 @@ function initializeWords(all_words){
   }
   WORDS_BY_TYPE.all = [...all_words];
 
-  setQuizType("all")
-
-  console.log(`取得件数: ${all_words.length}`);
-
-  shuffledWords = shuffle(all_words);
+  console.log(WORDS_BY_TYPE);
+  console.log(`全件数: ${all_words.length}`);
 }
 
 function setQuizType(type) {
@@ -195,6 +198,13 @@ function setQuizType(type) {
   else {
     shuffledWords = WORDS_BY_TYPE[type];
   }
+  console.log(`フィルタ済み件数: ${shuffledWords.length}`);
+
+  if(shuffledWords.length == 0){
+    alert("該当する単語はありません\n再度カテゴリを選択してください...");
+    return 0;
+  }
+  
   currentIndex = 0;
 
   word = shuffledWords[currentIndex];
@@ -203,6 +213,8 @@ function setQuizType(type) {
   updateProgressBar();
 
   document.getElementById("quiz-container").dataset.type = type;
+
+  return 1;
 }
 
 function shuffle(array) {
