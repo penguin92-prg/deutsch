@@ -2,7 +2,7 @@
 
 :root{
   --background: #f7fafe;
-  
+
   --base1: #ffffff;
   --base2: #f4f4f8;
   --base3: #e4e4e8;
@@ -14,17 +14,7 @@
   --green-background: #f1f9f4;
   --green-text: #07a352;
 
-  --red1: #f2847a;
-
-  --orange1: #dd9434;
-
-  --green1: #609159;
-  --green2: #CAE640;
-
-
-  --blue1: #8695f2;
-
-  --text1: #222222;
+  --text1: #16202f;
   --text2: #555555;
   --text3: #888888;
 

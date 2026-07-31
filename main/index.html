@@ -6,15 +6,16 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="ドイツ語WEB単語帳「どいちゅ」は、皆さんのドイツ語学習を手助けします。すぐにとりかかろう！">
 
-  <title>1S2の単語&emsp;どいちゅ | ドイツ語WEB単語帳</title>
+  <title>1S3の単語&emsp;どいちゅ | ドイツ語WEB単語帳</title>
 
   <!-- リセットCSS読み込み -->
   <link rel="stylesheet" href="../asset/css/reset.css">
 
   <!-- CSS読み込み -->
-  <link rel="stylesheet" href="../asset/css/variable.css">
+  <link rel="stylesheet" href="./asset/css/variable.css">
   <link rel="stylesheet" href="./asset/css/style.css">
-  <link rel="stylesheet" href="./asset/css/style-1S2.css">
+  <link rel="stylesheet" href="./asset/css/style-1S3.css">
+  <link rel="stylesheet" href="./asset/css/style-1S3-setting.css">
 
   <!-- GoogleFonts読み込み -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -67,26 +68,45 @@
     <h3>単語帳の設定</h3>
     <form id="setting-container">
 
-      <!-- <div class="setting-item">
-          <label for="setting-lesson-from">Lektion</label>
-          <select name="lesson-from" id="setting-lesson-from">
-            <option value="8" selected>8</option>
-            <option value="9">9</option>
-            <option value="10">10</option>
-            <option value="11">11</option>
-            <option value="12">12</option>
-          </select>
-          <label>から</label>
-          <label for="setting-lesson-to">Lektion</label>
-          <select name="lesson-to" id="setting-lesson-to">
-            <option value="8">8</option>
-            <option value="9">9</option>
-            <option value="10">10</option>
-            <option value="11">11</option>
-            <option value="12" selected>12</option>
-          </select>
-          <label>まで</label>
-        </div> -->
+      <div class="setting-item">
+        <label for="setting-lektion">Lektion選択</label>
+        <div id="setting-lektion-container">
+          <span class="setting-lektion-item">
+            <label for="setting-lektion-lektion1">Lektion1</label>
+            <input type="checkbox" name="setting-lektion" id="setting-lektion-lektion1" value="lektion1">
+          </span>
+
+          <span class="setting-lektion-item">
+            <label for="setting-lektion-lektion2">Lektion2</label>
+            <input type="checkbox" name="setting-lektion" id="setting-lektion-lektion2" value="lektion2">
+          </span>
+
+          <span class="setting-lektion-item">
+            <label for="setting-lektion-lektion8">Lektion8</label>
+            <input type="checkbox" name="setting-lektion" id="setting-lektion-lektion8" value="lektion8">
+          </span>
+
+          <span class="setting-lektion-item">
+            <label for="setting-lektion-lektion9">Lektion9</label>
+            <input type="checkbox" name="setting-lektion" id="setting-lektion-lektion9" value="lektion9">
+          </span>
+
+          <span class="setting-lektion-item">
+            <label for="setting-lektion-lektion10">Lektion10</label>
+            <input type="checkbox" name="setting-lektion" id="setting-lektion-lektion10" value="lektion10">
+          </span>
+
+          <span class="setting-lektion-item">
+            <label for="setting-lektion-lektion11">Lektion11</label>
+            <input type="checkbox" name="setting-lektion" id="setting-lektion-lektion11" value="lektion11">
+          </span>
+
+          <span class="setting-lektion-item">
+            <label for="setting-lektion-lektion12">Lektion12</label>
+            <input type="checkbox" name="setting-lektion" id="setting-lektion-lektion12" value="lektion12">
+          </span>
+        </div>
+      </div>
 
       <div class="setting-item">
         <label for="setting-type">分類</label>

@@ -1,0 +1,258 @@
+@charset "utf-8";
+
+/* ================================================== */
+/* ================================================== */
+/* ================================================== */
+
+div#setting-window{
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  z-index: 10;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+
+  width: 100%;
+  height: fit-content;
+
+  margin: 0;
+  padding: 2rem 0;
+
+  border: none;
+  border-radius: 0;
+
+  background-color: var(--base1);
+
+  box-shadow: var(--shadowRaised);
+
+
+  transition: all .2s;
+  transform: translateY(100%);
+}
+div#setting-window.active{
+  transform: translateY(0);
+}
+
+/* ================================================== */
+
+div#setting-window>h3{
+  display: block;
+
+  width: fit-content;
+  height: fit-content;
+
+  margin: 0 0 1.5rem 0;
+  padding: 0;
+
+  color: var(--text1);
+  font-family: "Jost", "Noto Sans JP", sans-serif;
+  font-weight: 500;
+  font-size: 1.6rem;
+
+  line-height: 2rem;
+  text-align: center;
+  text-decoration: none;
+  letter-spacing: 0;
+}
+
+/* ================================================== */
+
+div#setting-window>form#setting-container{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 1rem;
+
+  width: 90%;
+  height: fit-content;
+
+  margin: 0 auto 1.5rem auto;
+  padding: 0;
+}
+
+/* ================================================== */
+
+form#setting-container>div.setting-item{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  gap: 2rem;
+
+  width: calc(100% - 2rem * 2);
+  height: fit-content;
+
+  margin: 0;
+  padding: 0.5rem 2rem;
+
+  border: none;
+  border-radius: 1rem;
+
+  background-color: var(--base2);
+  
+  box-shadow: var(--shadowRaised);
+}
+
+/* ================================================== */
+
+div.setting-item>label{
+  display: inline-block;
+
+  width: fit-content;
+  height: fit-content;
+
+  margin: 0;
+  padding: 0;
+
+  color: var(--text1);
+  font-family: "Jost", "Noto Sans JP", sans-serif;
+  font-weight: 500;
+  font-size: 1.2rem;
+
+  line-height: 2rem;
+  text-align: center;
+  text-decoration: none;
+  letter-spacing: 0;
+
+  white-space: nowrap;
+}
+
+/* ================================================== */
+
+div.setting-item>select{
+  display: block;
+
+  width: fit-content;
+  height: fit-content;
+
+  margin: 0;
+  padding: 0.5rem 1rem;
+
+  border: none;
+  border-radius: 100rem;
+
+  box-shadow: var(--shadowInset);
+
+  color: var(--text1);
+  font-family: "Jost", "Noto Sans JP", sans-serif;
+  font-weight: 500;
+  font-size: 1.2rem;
+
+  line-height: 2rem;
+  text-align: center;
+  text-decoration: none;
+  letter-spacing: 0;
+}
+
+/* ================================================== */
+/* ================================================== */
+/* ================================================== */
+
+div.setting-item span{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+
+  width: fit-content;
+  height: 100%;
+
+  margin: 0;
+  padding: 0;
+}
+div.setting-item>span{
+  gap: 3rem;
+}
+div.setting-item>span span{
+  gap: 2rem;
+}
+
+div.setting-item span>label{
+  display: inline-block;
+
+  width: fit-content;
+  height: 100%;
+
+  margin: 0;
+  padding: 0;
+
+  color: var(--text1);
+  font-family: "Jost", "Noto Sans JP", sans-serif;
+  font-weight: 500;
+  font-size: 1.2rem;
+
+  line-height: 3rem;
+  text-align: center;
+  text-decoration: none;
+  letter-spacing: 0;
+}
+
+div.setting-item span>input[type="radio"]{
+  margin: 0;
+  padding: 0;
+
+  transform: scale(1.5);
+}
+
+/* ================================================== */
+/* ================================================== */
+
+div#setting-window>div#setting-button-container{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+}
+
+div#setting-window>div#setting-button-container>button{
+  display: block;
+
+  width: fit-content;
+  height: fit-content;
+
+  margin: 0;
+  padding: 0.5rem 1.5rem;
+
+  border: none;
+  border-radius: 100rem;
+
+  background-color: var(--blue1);
+
+  color: var(--base1);
+  font-family: "Jost", "Noto Sans JP", sans-serif;
+  font-weight: 500;
+  font-size: 1.4rem;
+
+  line-height: 2rem;
+  text-align: center;
+  text-decoration: none;
+  letter-spacing: 0;
+}
+div#setting-window>div#setting-button-container>button#setting-window-close-with-save-btn{
+  background-color: var(--green-background);
+  color: var(--green-text);
+}
+div#setting-window>div#setting-button-container>button#setting-window-close-without-save-btn{
+  background-color: var(--red-background);
+  color: var(--red-text);
+}
+
+/* ================================================== */
+/* ================================================== */
+/* ================================================== */
+
+div.setting-item>div#setting-lektion-container{
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(6rem, 1fr));
+  gap: 1rem;
+  flex-wrap: wrap;
+
+  width: 100%;
+  height: fit-content;
+}
