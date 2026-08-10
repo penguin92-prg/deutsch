@@ -1,9 +1,5 @@
 let word;
 
-
-
-
-
 window.addEventListener("load", function () {
   if(!window.localStorage){
     console.log("LocalStorage非対応...");
