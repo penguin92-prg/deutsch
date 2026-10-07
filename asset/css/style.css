@@ -53,7 +53,7 @@ header{
   background-color: var(--base1);
 
   transition: all .3s;
-  transform: translateY(-10rem);
+  transform: translateY(-6rem);
 }
 header.show{
   transform: translateY(0);
