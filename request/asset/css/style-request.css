@@ -1,19 +1,29 @@
 @charset "utf-8";
 
-div.request-section{
+div.section {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: flex-start;
   gap: 0;
 
-  width: 100%;
+  width: calc(90% - 2rem * 2);
   height: fit-content;
 
-  margin: 2rem 0;
-  padding: 0;
+  margin: 2rem auto;
+  padding: 2rem;
+
+  border: none;
+  border-radius: 2rem;
+
+  background-color: var(--base1);
+
+  box-shadow: var(--shadowRaised);
 }
-div.request-section>h2, div.request-section>h3, div.request-section>p{
+
+div.section>h2,
+div.section>h3,
+div.section>p {
   display: block;
 
   width: 100%;
@@ -22,7 +32,8 @@ div.request-section>h2, div.request-section>h3, div.request-section>p{
   margin: 0;
   padding: 0;
 }
-div.request-section>h2{
+
+div.section>h2 {
   color: var(--text1);
   font-family: "Jost", "Noto Sans JP", sans-serif;
   font-weight: 500;
@@ -33,7 +44,8 @@ div.request-section>h2{
   text-decoration: none;
   letter-spacing: 0.1rem;
 }
-div.request-section>h3{
+
+div.section>h3 {
   color: var(--text1);
   font-family: "Jost", "Noto Sans JP", sans-serif;
   font-weight: 500;
@@ -44,7 +56,8 @@ div.request-section>h3{
   text-decoration: none;
   letter-spacing: 0.1rem;
 }
-div.request-section>p{
+
+div.section>p {
   margin: 1rem 0 0 0;
   color: var(--text1);
   font-family: "Jost", "Noto Sans JP", sans-serif;
@@ -58,20 +71,23 @@ div.request-section>p{
 }
 
 /* ================================================== */
+/* ================================================== */
+/* ================================================== */
 
-div#request-description>ul{
+div#description>ul {
   display: block;
-  
-  width: 100%;
+
+  width: 90%;
   height: fit-content;
 
-  margin: 1rem 0 0 0;
+  margin: 1rem auto 0 auto;
   padding: 0;
 
   list-style: disc;
   list-style-position: inside;
 }
-div#request-description>ul>li{
+
+div#description>ul>li {
   display: list-item;
 
   width: 100%;
@@ -79,7 +95,7 @@ div#request-description>ul>li{
 
   margin: 0;
   padding: 0;
-  
+
   color: var(--text1);
   font-family: "Jost", "Noto Sans JP", sans-serif;
   font-weight: 400;
@@ -92,8 +108,10 @@ div#request-description>ul>li{
 }
 
 /* ================================================== */
+/* ================================================== */
+/* ================================================== */
 
-form#request-form{
+form#request-form {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -114,7 +132,7 @@ form#request-form{
   box-shadow: var(--shadowRaised);
 }
 
-form#request-form>label{
+form#request-form>label {
   display: block;
 
   width: 100%;
@@ -122,7 +140,7 @@ form#request-form>label{
 
   margin: 0;
   padding: 0;
-  
+
   color: var(--text1);
   font-family: "Jost", "Noto Sans JP", sans-serif;
   font-weight: 400;
@@ -134,7 +152,7 @@ form#request-form>label{
   letter-spacing: 0;
 }
 
-form#request-form>select{
+form#request-form>select {
   display: block;
 
   width: 100%;
@@ -147,7 +165,7 @@ form#request-form>select{
   border-radius: 1rem;
 
   background-color: var(--base1);
-  
+
   color: var(--text1);
   font-family: "Jost", "Noto Sans JP", sans-serif;
   font-weight: 400;
@@ -157,11 +175,13 @@ form#request-form>select{
   text-align: justify;
   text-decoration: none;
   letter-spacing: 0;
-  
+
   cursor: pointer;
 }
 
-form#request-form>textarea{
+form#request-form>textarea {
+  resize: none;
+
   display: block;
 
   width: calc(100% - 1rem * 2);
@@ -172,7 +192,7 @@ form#request-form>textarea{
 
   border: none;
   border-radius: 1rem;
-  
+
   color: var(--text1);
   font-family: "Jost", "Noto Sans JP", sans-serif;
   font-weight: 400;
@@ -184,7 +204,7 @@ form#request-form>textarea{
   letter-spacing: 0;
 }
 
-form#request-form>button{
+form#request-form>button {
   display: block;
 
   width: fit-content;
@@ -195,11 +215,11 @@ form#request-form>button{
 
   border: none;
   border-radius: 100rem;
-  
-  background-color: var(--green1);
+
+  background-color: var(--green-text);
 
   box-shadow: var(--shadowRaised);
-  
+
   color: var(--base1);
   font-family: "Jost", "Noto Sans JP", sans-serif;
   font-weight: 600;
@@ -209,13 +229,15 @@ form#request-form>button{
   text-align: justify;
   text-decoration: none;
   letter-spacing: 0;
-  
+
   cursor: pointer;
 }
 
 /* ================================================== */
+/* ================================================== */
+/* ================================================== */
 
-div#request-form-thanks{
+div#form-thanks {
   position: absolute;
   inset: 0;
   z-index: 1000;
@@ -243,13 +265,14 @@ div#request-form-thanks{
 
   transition: all .15s;
 }
-div#request-form-thanks.active{
+
+div#form-thanks.active {
   opacity: 1;
   visibility: visible;
   pointer-events: auto;
 }
 
-div#request-form-thanks>p{
+div#form-thanks>p {
   display: block;
 
   width: 100%;
@@ -257,7 +280,7 @@ div#request-form-thanks>p{
 
   margin: 0;
   padding: 0;
-  
+
   color: var(--text1);
   font-family: "Jost", "Noto Sans JP", sans-serif;
   font-weight: 400;
@@ -269,7 +292,10 @@ div#request-form-thanks>p{
   letter-spacing: 0;
 }
 
-span#request-form-thanks-bcg{
+/* ================================================== */
+/* ================================================== */
+
+span#form-thanks-bg {
   position: absolute;
   inset: 0;
   z-index: 999;
@@ -290,7 +316,8 @@ span#request-form-thanks-bcg{
 
   transition: all .15s;
 }
-span#request-form-thanks-bcg.active{
+
+span#form-thanks-bg.active {
   opacity: 1;
   visibility: visible;
   pointer-events: auto;

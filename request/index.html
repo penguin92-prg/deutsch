@@ -6,14 +6,15 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="ドイツ語WEB単語帳「どいちゅ」は、皆さんのドイツ語学習を手助けします。すぐにとりかかろう！">
 
-  <title>どいちゅ | ドイツ語WEB単語帳</title>
+  <title>要望を送る&emsp;どいちゅ | ドイツ語WEB単語帳</title>
 
   <!-- リセットCSS読み込み -->
-  <link rel="stylesheet" href="./asset/css/reset.css">
+  <link rel="stylesheet" href="../asset/css/reset.css">
 
   <!-- CSS読み込み -->
   <link rel="stylesheet" href="./asset/css/variable.css">
   <link rel="stylesheet" href="./asset/css/style.css">
+  <link rel="stylesheet" href="./asset/css/style-request.css">
 
   <!-- GoogleFonts読み込み -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -21,6 +22,10 @@
   <link
     href="https://fonts.googleapis.com/css2?family=Jost:ital,wght@0,100..900;1,100..900&family=Noto+Sans+JP:wght@100..900&display=swap"
     rel="stylesheet">
+
+  <!-- マテリアルアイコン (Google Icons) -->
+  <link rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
 
   <!-- ファビコン読み込み -->
   <link rel="icon" type="image/png" href="/asset/favicon/favicon-96x96.png" sizes="96x96" />
@@ -40,62 +45,69 @@
 </head>
 
 <body>
-  <header>
+  <header class="show">
     <a href="../">どいちゅ&ensp;<small>ドイツ語WEB単語帳</small></a>
   </header>
 
-  <div id="title">
-    <h1>いっひ<br>れるね<br>どいちゅ！</h1>
-  </div>
-
-  <div id="button">
-    <a href="./main">単語帳をひらく<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640">
-        <path
-          d="M598.6 342.6C611.1 330.1 611.1 309.8 598.6 297.3L470.6 169.3C458.1 156.8 437.8 156.8 425.3 169.3C412.8 181.8 412.8 202.1 425.3 214.6L498.7 288L64 288C46.3 288 32 302.3 32 320C32 337.7 46.3 352 64 352L498.7 352L425.3 425.4C412.8 437.9 412.8 458.2 425.3 470.7C437.8 483.2 458.1 483.2 470.6 470.7L598.6 342.7z" />
-      </svg></a>
-  </div>
+  <span id="headerSpan"></span>
 
   <div id="description" class="section">
-    <h2>About</h2>
-    <h3>このサイトについて</h3>
-    <p>
-      このサイトは、ドイツ語一列･二列の試験対策用の単語練習サイトです。東京大学ドイツ語にて使用されている共通教科書『Einblicke』をベースとして制作しました。<br>
-    </p>
-  </div>
-
-  <div id="usage" class="section">
-    <h2>Usage</h2>
-    <h3>使いかた</h3>
-    <p>
-      単語のスペリングをチェックするため、誤判定を防ぐためにもドイツ語キーボードの導入をおすすめします。<br>
-      例: Osterreich → ✕&emsp;Österreich → 〇
-    </p>
-  </div>
-
-  <div id="request" class="section">
     <h2>Request</h2>
-    <h3>要望をおくる</h3>
+    <h3>要望を送る</h3>
     <p>
-      単語帳の内容の間違いや機能追加の要望があれば、<a href="./request/">こちら</a>からお願いいたします。
+      このサイトについての要望を送ることができます。<br>
+    </p>
+
+    <ul>
+      <li>単語のスペルミス</li>
+      <li>不適当な日本語訳</li>
+      <li>誤った情報</li>
+    </ul>
+
+    <p>
+      などがあれば、こちらから連絡いただければASAPで修正します。
     </p>
   </div>
 
-  <div id="reference" class="section">
-    <h2>Reference</h2>
-    <h3>参考資料･サイト</h3>
-    <ul>
-      <li><a href="https://deutsch.c.u-tokyo.ac.jp/v20/" target="_blank" rel="noopener noreferrer">東京大学教養学部 ドイツ語部会</a>
-      </li>
-    </ul>
+  <div id="form" class="section">
+    <h2>Form</h2>
+    <h3>要望送信フォーム</h3>
+    <p>以下の項目を埋めて送信してください。</p>
+
+    <form id="request-form"
+      action="https://docs.google.com/forms/u/0/d/e/1FAIpQLSfo60Eb4zUhpzXT8mtc6HmdoKKAQ1gNQ5-B7zg7fIRmuwRzHg/formResponse"
+      method="POST" target="hidden_iframe">
+      <label for="request-form-category">カテゴリを選択してください</label>
+      <select name="entry.251393415" id="request-form-category" required>
+        <option value="情報のミス（スペル/和訳/情報など）">情報のミス（スペル/和訳/情報など）</option>
+        <option value="単語追加の要望">単語追加の要望</option>
+        <option value="サイト形式についての要望">サイト形式についての要望</option>
+        <option value="その他">その他</option>
+      </select>
+
+      <label for="request-form-content">内容を入力してください</label>
+      <textarea name="entry.318452551" id="request-form-content" placeholder="例: テストが難しすぎて解けません。どうにかなりませんか。"
+        required></textarea>
+
+      <button type="submit">送信</button>
+    </form>
+
+    <iframe name="hidden_iframe" style="display:none;"></iframe>
   </div>
+
+  <div id="form-thanks">
+    <p>
+      要望を送信いただきありがとうございます。<br>
+      可能な範囲ですぐに対応させていただきます。
+    </p>
+  </div>
+  <span id="form-thanks-bg"></span>
 
   <footer>
-    Created by:<br>
+    Created by<br>
     2026年度入学 東京大学 理科一類 18組 ドイツ語シケ対 有志<br>
     &copy;2026 penguin92-prg.
   </footer>
-
-  <span class="navSpan"></span>
 
   <script src="./asset/js/script.js"></script>
 </body>

@@ -17,17 +17,20 @@ window.addEventListener("load", function(){
       li.click();
     }
   });
+  
+  if(window.scrollY > 300){
+    document.querySelector("header").classList.add("show");
+  }
+  else{
+    document.querySelector("header").classList.remove("show");
+  }
+});
 
-  document.getElementById("request-form").addEventListener("submit", function(){
-    console.log("submitted");
-    document.getElementById("request-form-thanks").classList.add("active");
-    document.getElementById("request-form-thanks-bcg").classList.add("active");
-    window.setTimeout(
-      function(){
-        document.getElementById("request-form-thanks").classList.remove("active");
-        document.getElementById("request-form-thanks-bcg").classList.remove("active");
-      },
-      2000
-    );
-  });
+window.addEventListener('scroll', function(){
+  if(window.scrollY > 300){
+    document.querySelector("header").classList.add("show");
+  }
+  else{
+    document.querySelector("header").classList.remove("show");
+  }
 });
