@@ -29,6 +29,20 @@ window.addEventListener("load", function () {
     document.getElementById("quiz-answer3").blur();
     checkAnswer(word);
   });
+
+  document.getElementById("quiz-answer1").addEventListener("keydown", e => {
+    if (e.key === "Enter" && !e.isComposing) {
+      e.preventDefault();
+      document.getElementById("quiz-answer2").focus();
+    }
+  });
+
+  document.getElementById("quiz-answer2").addEventListener("keydown", e => {
+    if (e.key === "Enter" && !e.isComposing) {
+      e.preventDefault();
+      document.getElementById("quiz-answer3").focus();
+    }
+  });
 });
 
 window.addEventListener("load", async () => {
@@ -289,14 +303,14 @@ function newQuiz(w) {
 }
 
 function checkAnswer(w) {
-  console.log("単語", `"${w.german}"`, "id", w.id);
+  console.log("単語", `"${w.german1}"`, "id", w.id);
 
   const answer1 = document.getElementById("quiz-answer1").value;
   const answer2 = document.getElementById("quiz-answer2").value;
   const answer3 = document.getElementById("quiz-answer3").value;
-  const german1 = w.german1
-  const german2 = w.german2
-  const german3 = w.german3
+  const german1 = w.german1.trim();
+  const german2 = w.german2.trim();
+  const german3 = w.german3.trim();
   const note = w.note;
   const lesson = w.lesson;
 
@@ -332,6 +346,9 @@ function checkAnswer(w) {
   }
 
   // 属性指定
+  while(document.getElementById("quiz-attribute-container").firstChild){
+    document.getElementById("quiz-attribute-container").removeChild(document.getElementById("quiz-attribute-container").firstChild);
+  }
   if(lesson != "" && lesson != null){
     let lessonElement = document.createElement("span");
     console.log(lesson);
