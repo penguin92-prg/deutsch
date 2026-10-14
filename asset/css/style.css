@@ -11,6 +11,12 @@ html {
 
   font-family: "Jost", "Noto Sans JP", sans-serif;
   font-size: 10px;
+
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+html::-webkit-scrollbar{
+  display: none;
 }
 
 body {
