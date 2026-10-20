@@ -209,7 +209,7 @@ function setQuizType(type) {
     shuffledWords = shuffle(WORDS_BY_TYPE[type]);
   }
   else {
-    shuffledWords = WORDS_BY_TYPE[type];
+    shuffledWords = sortByKey(WORDS_BY_TYPE[type], "id");
   }
   console.log(`フィルタ済み件数: ${shuffledWords.length}`);
 
@@ -239,13 +239,17 @@ function shuffle(array) {
   return arr;
 }
 
+function sortByKey(array, key) {
+  return [...array].sort((a, b) => a[key] - b[key]);
+}
+
 function getNextWord() {
   if (currentIndex >= shuffledWords.length - 1) {
     if (shuffleFlag) {
       shuffledWords = shuffle(WORDS_BY_TYPE[currentType]);
     }
     else {
-      shuffledWords = WORDS_BY_TYPE[currentType];
+      shuffledWords = sortByKey(WORDS_BY_TYPE[currentType], "id");
     }
     currentIndex = 0;
   }
