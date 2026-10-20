@@ -167,6 +167,14 @@ div#quiz-window{
 
   overflow-y: auto;
 }
+/* 結果表示中は画面の高さに固定し、結果一覧の中だけをスクロールさせる */
+div#quiz-window:has(div#quiz-result.active){
+  gap: 2rem;
+
+  height: calc(100dvh - 7rem - 2rem);
+
+  overflow-y: hidden;
+}
 
 /* ================================================== */
 
@@ -532,6 +540,205 @@ form#quiz-container>div#quiz-note-container>p#quiz-note{
 /* ================================================== */
 /* ================================================== */
 
+div#quiz-result{
+  display: none;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 1rem;
+
+  flex: 1 1 auto;
+  min-height: 0;
+
+  width: 100%;
+
+  margin: 0;
+  padding: 0;
+}
+div#quiz-result.active{
+  display: flex;
+}
+
+div#quiz-result>h3#quiz-result-summary{
+  display: block;
+
+  width: fit-content;
+  height: fit-content;
+
+  margin: 0;
+  padding: 0;
+
+  color: var(--text1);
+  font-family: "Jost", "Noto Sans JP", sans-serif;
+  font-weight: 600;
+  font-size: 2rem;
+
+  line-height: 3rem;
+  text-align: center;
+  text-decoration: none;
+  letter-spacing: 0;
+}
+
+ul#quiz-result-list{
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+
+  flex: 1 1 auto;
+  min-height: 0;
+
+  /* 影が切れないよう内側に余白を確保 */
+  width: calc(100% - 1rem * 2);
+
+  margin: 0;
+  padding: 1rem;
+
+  border: none;
+  border-radius: 2rem;
+
+  background-color: var(--base2);
+
+  list-style: none;
+
+  overflow-y: auto;
+}
+
+ul#quiz-result-list>li{
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+
+  flex-shrink: 0;
+
+  width: calc(100% - 2rem * 2);
+  height: fit-content;
+
+  margin: 0;
+  padding: 1.5rem 2rem;
+
+  border: none;
+  border-radius: 1.5rem;
+
+  background-color: var(--base1);
+
+  box-shadow: var(--shadowRaised);
+}
+
+ul#quiz-result-list>li>p.quiz-result-japanese{
+  display: block;
+
+  margin: 0;
+  padding: 0;
+
+  color: var(--text1);
+  font-family: "Jost", "Noto Sans JP", sans-serif;
+  font-weight: 600;
+  font-size: 1.6rem;
+
+  line-height: 2.5rem;
+  text-align: left;
+  text-decoration: none;
+  letter-spacing: 0;
+}
+
+ul#quiz-result-list>li>div.quiz-result-words{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 1rem;
+
+  width: 100%;
+
+  margin: 0;
+  padding: 0;
+}
+
+div.quiz-result-word{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 1rem;
+
+  flex: 1 1 12rem;
+
+  margin: 0;
+  padding: 1rem;
+
+  border: none;
+  border-radius: 1rem;
+}
+div.quiz-result-word[data-t_or_f="true"]{
+  background-color: var(--green-background);
+  color: var(--green-text);
+}
+div.quiz-result-word[data-t_or_f="false"]{
+  background-color: var(--red-background);
+  color: var(--red-text);
+}
+
+div.quiz-result-word>span{
+  display: block;
+  flex-shrink: 0;
+
+  height: 2.4rem;
+  aspect-ratio: 1 / 1;
+
+  margin: 0;
+  padding: 0;
+
+  border-radius: 50%;
+
+  color: var(--base1);
+  font-size: 1.6rem;
+
+  line-height: 2.4rem;
+  text-align: center;
+}
+div.quiz-result-word[data-t_or_f="true"]>span{
+  background-color: var(--green-text);
+}
+div.quiz-result-word[data-t_or_f="false"]>span{
+  background-color: var(--red-text);
+}
+
+div.quiz-result-word>div{
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+
+  min-width: 0;
+}
+
+div.quiz-result-word>div>p{
+  display: block;
+
+  margin: 0;
+  padding: 0;
+
+  font-family: "Jost", "Noto Sans JP", sans-serif;
+
+  text-align: left;
+  text-decoration: none;
+  letter-spacing: 0;
+
+  overflow-wrap: anywhere;
+}
+div.quiz-result-word>div>p.quiz-result-german{
+  font-weight: 600;
+  font-size: 1.4rem;
+  line-height: 2rem;
+}
+div.quiz-result-word>div>p.quiz-result-answer{
+  font-weight: 400;
+  font-size: 1.2rem;
+  line-height: 1.6rem;
+  text-decoration: line-through;
+}
+
+/* ================================================== */
+/* ================================================== */
+/* ================================================== */
+
 div#quiz-button-container{
   display: flex;
   flex-direction: column;
@@ -550,7 +757,8 @@ div#quiz-button-container{
 /* ================================================== */
 /* ================================================== */
 
-button#quiz-next{
+button#quiz-next,
+button#quiz-retry{
   display: none;
   flex-direction: row;
   justify-content: center;
@@ -583,17 +791,19 @@ button#quiz-next{
   
   cursor: pointer;
 }
-button#quiz-next.active{
+button#quiz-next.active,
+button#quiz-retry.active{
   display: flex;
 }
 button#quiz-next[disabled]{
   background: var(--base3);
 
   color: var(--text3);
-  
+
   cursor: auto;
 }
-button#quiz-next>span{
+button#quiz-next>span,
+button#quiz-retry>span{
   font-size: 1.6rem;
 }
 

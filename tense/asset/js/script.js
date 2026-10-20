@@ -47,8 +47,17 @@ window.addEventListener("load", function () {
 
 window.addEventListener("load", async () => {
   document.getElementById("quiz-next").addEventListener("click", function () {
+    // 1サイクル終了時は結果一覧を表示
+    if (currentIndex >= shuffledWords.length - 1) {
+      showResult();
+      return;
+    }
     word = getNextWord();
     newQuiz(word);
+  });
+
+  document.getElementById("quiz-retry").addEventListener("click", function () {
+    setQuizType(currentType);
   });
 
   document.getElementById("quiz-previous").addEventListener("click", function () {
@@ -88,9 +97,6 @@ async function saveSetting(){
 
   setQuizType("verb");
   document.querySelector("#quiz-window>h3").classList.remove("active");
-  document.getElementById("quiz-container").classList.add("active");
-  document.getElementById("quiz-next").classList.add("active");
-  document.getElementById("quiz-previous").classList.add("active");
   document.getElementById("progress-bar-container").classList.add("active")
 
 }
@@ -145,6 +151,8 @@ let ALL_WORDS = [];
 let shuffleFlag = true;
 let shuffledWords;
 let currentIndex = 0;
+// 初回解答の記録（shuffledWordsのインデックスをキーとする）
+let firstAnswers = {};
 
 async function loadWords(tableName) {
   try {
@@ -219,6 +227,15 @@ function setQuizType(type) {
   }
   
   currentIndex = 0;
+  firstAnswers = {};
+
+  // クイズ画面を表示し、結果一覧を非表示に
+  document.getElementById("quiz-container").classList.add("active");
+  document.getElementById("quiz-next").classList.add("active");
+  document.getElementById("quiz-previous").classList.add("active");
+  document.getElementById("quiz-previous").setAttribute("disabled", "");
+  document.getElementById("quiz-result").classList.remove("active");
+  document.getElementById("quiz-retry").classList.remove("active");
 
   word = shuffledWords[currentIndex];
   newQuiz(word);
@@ -244,18 +261,7 @@ function sortByKey(array, key) {
 }
 
 function getNextWord() {
-  if (currentIndex >= shuffledWords.length - 1) {
-    if (shuffleFlag) {
-      shuffledWords = shuffle(WORDS_BY_TYPE[currentType]);
-    }
-    else {
-      shuffledWords = sortByKey(WORDS_BY_TYPE[currentType], "id");
-    }
-    currentIndex = 0;
-  }
-  else{
-    currentIndex++;
-  }
+  currentIndex++;
 
   updateProgressBar();
 
@@ -318,6 +324,11 @@ function checkAnswer(w) {
   const note = w.note;
   const lesson = w.lesson;
 
+  // 初回の解答のみ記録
+  if (!(currentIndex in firstAnswers)) {
+    firstAnswers[currentIndex] = [answer1, answer2, answer3];
+  }
+
   document.getElementById("quiz-german1-container").classList.add("active");
   document.getElementById("quiz-german2-container").classList.add("active");
   document.getElementById("quiz-german3-container").classList.add("active");
@@ -372,6 +383,82 @@ function checkAnswer(w) {
 
   document.getElementById("quiz-next").removeAttribute("disabled");
   document.getElementById("quiz-next").focus();
+}
+
+function showResult() {
+  document.getElementById("quiz-container").classList.remove("active");
+  document.getElementById("quiz-next").classList.remove("active");
+  document.getElementById("quiz-previous").classList.remove("active");
+  document.getElementById("quiz-result").classList.add("active");
+  document.getElementById("quiz-retry").classList.add("active");
+
+  // プログレスバーを100%に
+  document.getElementById("progress-bar-label1").textContent = `${shuffledWords.length} / ${shuffledWords.length}`;
+  document.getElementById("progress-bar-label2").textContent = `進捗 100.00%`;
+  document.getElementById("progress-bar").style.width = `100%`;
+
+  const list = document.getElementById("quiz-result-list");
+  list.innerHTML = null;
+
+  let correctCount = 0;
+  let totalCount = 0;
+
+  shuffledWords.forEach((w, index) => {
+    const answers = firstAnswers[index] || ["", "", ""];
+    const germans = [w.german1.trim(), w.german2.trim(), w.german3.trim()];
+
+    const item = document.createElement("li");
+
+    const japanese = document.createElement("p");
+    japanese.className = "quiz-result-japanese";
+    japanese.textContent = w.japanese;
+    item.appendChild(japanese);
+
+    const wordsContainer = document.createElement("div");
+    wordsContainer.className = "quiz-result-words";
+
+    germans.forEach((german, i) => {
+      const isCorrect = (answers[i] == german);
+      totalCount++;
+      if (isCorrect) {
+        correctCount++;
+      }
+
+      const wordElement = document.createElement("div");
+      wordElement.className = "quiz-result-word";
+      wordElement.dataset.t_or_f = isCorrect ? "true" : "false";
+
+      const icon = document.createElement("span");
+      icon.className = "material-symbols-outlined";
+      icon.textContent = isCorrect ? "check" : "close";
+      wordElement.appendChild(icon);
+
+      const textContainer = document.createElement("div");
+
+      const germanElement = document.createElement("p");
+      germanElement.className = "quiz-result-german";
+      germanElement.textContent = german;
+      textContainer.appendChild(germanElement);
+
+      if (!isCorrect) {
+        const answerElement = document.createElement("p");
+        answerElement.className = "quiz-result-answer";
+        answerElement.textContent = answers[i] === "" ? "（未入力）" : answers[i];
+        textContainer.appendChild(answerElement);
+      }
+
+      wordElement.appendChild(textContainer);
+      wordsContainer.appendChild(wordElement);
+    });
+
+    item.appendChild(wordsContainer);
+    list.appendChild(item);
+  });
+
+  document.getElementById("quiz-result-summary").textContent = `正解数 ${correctCount} / ${totalCount}`;
+
+  document.getElementById("quiz-result-list").scrollTop = 0;
+  document.getElementById("quiz-retry").focus({ preventScroll: true });
 }
 
 function updateProgressBar(){
